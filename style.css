@@ -2423,6 +2423,7 @@ input:checked + .slider-round:before {
 .theme-toggle svg {
     position: absolute;
     transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s ease;
+    pointer-events: none;
 }
 
 .theme-toggle .sun-icon {

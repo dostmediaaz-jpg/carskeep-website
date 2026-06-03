@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+function initApp() {
     
     /* ==========================================================================
        MOBILE NAVIGATION TOGGLE
@@ -766,4 +766,10 @@ document.addEventListener('DOMContentLoaded', () => {
         console.warn('Could not read language from localStorage:', e);
     }
     switchLanguage(savedLang);
-});
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initApp);
+} else {
+    initApp();
+}
