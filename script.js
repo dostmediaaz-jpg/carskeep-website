@@ -74,9 +74,28 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Initialize translations cache
+    window.translations = {};
+
     // Switch language function
-    function switchLanguage(lang) {
-        if (!window.translations || !window.translations[lang]) return;
+    async function switchLanguage(lang) {
+        // Fetch translations if not already cached
+        if (!window.translations[lang]) {
+            try {
+                const response = await fetch(`./locales/${lang}.json`);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                window.translations[lang] = await response.json();
+            } catch (error) {
+                console.error(`Failed to load translations for lang: ${lang}`, error);
+                // Fallback to English if loading fails
+                if (lang !== 'en') {
+                    await switchLanguage('en');
+                }
+                return;
+            }
+        }
         
         window.currentLanguage = lang;
         localStorage.setItem('carskeep_lang', lang);
@@ -118,6 +137,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 el.setAttribute('placeholder', translation);
             }
         });
+
+        // Translate theme toggle button tooltip/aria-label
+        const themeBtn = document.getElementById('theme-toggle-btn');
+        if (themeBtn) {
+            const translation = window.translations[lang]['theme_toggle_title'];
+            if (translation !== undefined) {
+                themeBtn.setAttribute('title', translation);
+                themeBtn.setAttribute('aria-label', translation);
+            }
+        }
 
         // Update dynamic details in the simulators
         updateTimerText();
@@ -701,19 +730,29 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     /* ==========================================================================
-       HEADER STICKY BLUR ACTION
+       THEME SWITCHER & HEADER STICKY ACTION
        ========================================================================== */
     const header = document.getElementById('main-header');
+    const themeToggleBtn = document.getElementById('theme-toggle-btn');
     
+    // Toggle header class on scroll
     window.addEventListener('scroll', () => {
         if (window.scrollY > 50) {
-            header.style.backgroundColor = 'rgba(7, 8, 13, 0.9)';
-            header.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.3)';
+            header.classList.add('header-scrolled');
         } else {
-            header.style.backgroundColor = 'rgba(7, 8, 13, 0.75)';
-            header.style.boxShadow = 'none';
+            header.classList.remove('header-scrolled');
         }
     });
+
+    // Theme toggle click handler
+    if (themeToggleBtn) {
+        themeToggleBtn.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('carskeep_theme', newTheme);
+        });
+    }
 
     // Initialize language from localStorage or default to EN (English)
     const savedLang = localStorage.getItem('carskeep_lang') || 'en';

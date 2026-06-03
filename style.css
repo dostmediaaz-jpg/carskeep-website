@@ -2,7 +2,7 @@
    DESIGN SYSTEM & VARIABLES
    ========================================================================== */
 :root {
-    /* Color Palette */
+    /* Theme State: Dark Mode (Default) */
     --bg-darker: #07080d;
     --bg-dark: #0f111a;
     --bg-card: rgba(22, 26, 41, 0.6);
@@ -25,6 +25,25 @@
     --gradient-primary: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
     --gradient-glow: radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, rgba(0, 0, 0, 0) 70%);
 
+    /* Semantic Elements */
+    --header-bg: rgba(7, 8, 13, 0.75);
+    --header-bg-scrolled: rgba(7, 8, 13, 0.95);
+    --header-shadow: none;
+    --header-shadow-scrolled: 0 10px 30px rgba(0, 0, 0, 0.3);
+    
+    --shadow-mockup: 0 30px 60px rgba(0, 0, 0, 0.6), 0 0 40px rgba(59, 130, 246, 0.05);
+    --shadow-card: 0 20px 50px rgba(0, 0, 0, 0.3);
+    
+    --bg-sim-inner: rgba(255, 255, 255, 0.02);
+    --bg-sim-inner-hover: rgba(255, 255, 255, 0.06);
+    --bg-sim-card: #07080d;
+    
+    --car-stroke: rgba(255, 255, 255, 0.25);
+    --car-fill: rgba(30, 41, 59, 0.4);
+    
+    --popup-overlay-bg: rgba(7, 8, 13, 0.9);
+    --dropdown-bg: rgba(15, 17, 26, 0.95);
+
     /* Fonts */
     --font-heading: 'Outfit', 'Inter', sans-serif;
     --font-body: 'Inter', sans-serif;
@@ -40,6 +59,50 @@
     --transition-fast: 0.2s ease;
     --transition-normal: 0.3s ease;
     --transition-slow: 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Light Theme Variables Override */
+[data-theme="light"] {
+    --bg-darker: #f8fafc;
+    --bg-dark: #ffffff;
+    --bg-card: rgba(255, 255, 255, 0.75);
+    --bg-card-hover: rgba(255, 255, 255, 0.95);
+    --border-color: rgba(15, 23, 42, 0.08);
+    --border-color-hover: rgba(59, 130, 246, 0.6);
+    
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --text-muted: #94a3b8;
+    
+    --primary: #2563eb;
+    --primary-hover: #1d4ed8;
+    --primary-glow: rgba(37, 99, 235, 0.15);
+    
+    --accent-green: #10b981;
+    --accent-green-bg: rgba(16, 185, 129, 0.08);
+    --accent-red: #ef4444;
+    
+    --gradient-primary: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+    --gradient-glow: radial-gradient(circle, rgba(37, 99, 235, 0.08) 0%, rgba(0, 0, 0, 0) 70%);
+
+    /* Semantic Elements */
+    --header-bg: rgba(248, 250, 252, 0.8);
+    --header-bg-scrolled: rgba(255, 255, 255, 0.95);
+    --header-shadow: none;
+    --header-shadow-scrolled: 0 10px 30px rgba(15, 23, 42, 0.05);
+    
+    --shadow-mockup: 0 30px 60px rgba(15, 23, 42, 0.08), 0 0 40px rgba(37, 99, 235, 0.03);
+    --shadow-card: 0 20px 50px rgba(15, 23, 42, 0.06);
+    
+    --bg-sim-inner: rgba(15, 23, 42, 0.03);
+    --bg-sim-inner-hover: rgba(15, 23, 42, 0.06);
+    --bg-sim-card: #ffffff;
+    
+    --car-stroke: rgba(15, 23, 42, 0.15);
+    --car-fill: rgba(15, 23, 42, 0.04);
+    
+    --popup-overlay-bg: rgba(248, 250, 252, 0.95);
+    --dropdown-bg: rgba(255, 255, 255, 0.95);
 }
 
 /* ==========================================================================
@@ -194,13 +257,19 @@ img {
     left: 0;
     width: 100%;
     height: var(--header-height);
-    background-color: rgba(7, 8, 13, 0.75);
+    background-color: var(--header-bg);
     backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border-color);
     z-index: 1000;
     display: flex;
     align-items: center;
-    transition: background-color var(--transition-normal);
+    transition: background-color var(--transition-normal), box-shadow var(--transition-normal);
+    box-shadow: var(--header-shadow);
+}
+
+.header.header-scrolled {
+    background-color: var(--header-bg-scrolled);
+    box-shadow: var(--header-shadow-scrolled);
 }
 
 .header-container {
@@ -289,7 +358,7 @@ img {
     transform: translateX(-50%);
     width: 1000px;
     height: 600px;
-    background: radial-gradient(circle, rgba(59, 130, 246, 0.12) 0%, rgba(139, 92, 246, 0.05) 50%, rgba(0, 0, 0, 0) 70%);
+    background: var(--gradient-glow);
     z-index: 0;
     pointer-events: none;
 }
@@ -380,7 +449,7 @@ img {
     background-color: var(--bg-dark);
     border: 1px solid var(--border-color);
     border-radius: var(--radius-md);
-    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6), 0 0 40px rgba(59, 130, 246, 0.05);
+    box-shadow: var(--shadow-mockup);
     overflow: hidden;
     transform: rotateY(-5deg) rotateX(3deg);
     transition: transform var(--transition-slow);
@@ -2324,5 +2393,173 @@ input:checked + .slider-round:before {
         max-width: 220px;
         margin: 0 auto;
     }
+}
+
+/* ==========================================================================
+   THEME TOGGLER BUTTON & SEMANTIC OVERRIDES
+   ========================================================================== */
+.theme-toggle {
+    background-color: var(--bg-sim-inner);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    position: relative;
+    overflow: hidden;
+}
+
+.theme-toggle:hover {
+    background-color: var(--bg-sim-inner-hover);
+    border-color: var(--border-color-hover);
+    transform: scale(1.05);
+}
+
+.theme-toggle svg {
+    position: absolute;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s ease;
+}
+
+.theme-toggle .sun-icon {
+    opacity: 0;
+    transform: rotate(90deg) scale(0);
+}
+
+.theme-toggle .moon-icon {
+    opacity: 1;
+    transform: rotate(0) scale(1);
+}
+
+[data-theme="light"] .theme-toggle .sun-icon {
+    opacity: 1;
+    transform: rotate(0) scale(1);
+}
+
+[data-theme="light"] .theme-toggle .moon-icon {
+    opacity: 0;
+    transform: rotate(-90deg) scale(0);
+}
+
+/* Overriding presentation attributes in SVGs for the car blueprint inspection */
+.car-blueprint path {
+    fill: var(--car-fill) !important;
+    stroke: var(--car-stroke) !important;
+}
+
+.car-blueprint path:hover {
+    stroke: var(--primary) !important;
+    fill: var(--primary-glow) !important;
+}
+
+/* General component overrides for theme-variable adherence */
+.grid-card {
+    background-color: var(--bg-sim-inner);
+}
+
+.wf-card {
+    background-color: var(--bg-sim-inner-hover);
+}
+
+.wf-progress-bar {
+    background-color: var(--bg-sim-inner);
+}
+
+.tabs-nav {
+    background-color: var(--bg-sim-inner);
+}
+
+.tab-btn:hover {
+    background-color: var(--bg-sim-inner);
+}
+
+.kanban-col {
+    background-color: var(--bg-sim-inner);
+}
+
+.kanban-card {
+    border-color: var(--border-color);
+}
+
+.kanban-card:hover {
+    border-color: var(--border-color-hover);
+}
+
+.plate-tag {
+    background-color: var(--bg-sim-inner);
+    border-color: var(--border-color);
+}
+
+.trigger-popup-overlay {
+    background: var(--popup-overlay-bg);
+}
+
+.trigger-popup-card {
+    border-color: var(--border-color);
+}
+
+.waba-template-preview {
+    background-color: var(--bg-sim-inner);
+    border-color: var(--border-color);
+}
+
+.car-svg-container {
+    background-color: var(--bg-sim-inner);
+}
+
+.defect-log li {
+    background-color: var(--bg-sim-inner);
+}
+
+.waba-filters {
+    background-color: var(--bg-sim-inner);
+}
+
+.ledger-table-container {
+    background-color: var(--bg-sim-inner);
+}
+
+.btn-storno {
+    background-color: var(--bg-sim-inner);
+}
+
+.ledger-add-box {
+    background-color: var(--bg-sim-inner);
+}
+
+.roi-result-card {
+    box-shadow: var(--shadow-card);
+}
+
+.slider-round {
+    background-color: var(--bg-sim-inner);
+}
+
+.range-slider {
+    background-color: var(--bg-sim-inner-hover);
+}
+
+.range-slider-sm {
+    background-color: var(--bg-sim-inner-hover);
+}
+
+.lang-btn {
+    background-color: var(--bg-sim-inner);
+}
+
+.lang-btn:hover, .lang-selector.active .lang-btn {
+    background-color: var(--bg-sim-inner-hover);
+}
+
+.dropdown-menu {
+    background: var(--dropdown-bg);
+}
+
+.dropdown-item:hover {
+    background: var(--bg-sim-inner-hover);
 }
 
