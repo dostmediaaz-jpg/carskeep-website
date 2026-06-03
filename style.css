@@ -1456,6 +1456,7 @@ img {
     background-color: rgba(255, 255, 255, 0.01);
     max-height: 120px;
     overflow-y: auto;
+    overflow-x: auto;
     margin-bottom: 12px;
 }
 
@@ -2295,6 +2296,8 @@ input:checked + .slider-round:before {
     
     .tab-visual-content {
         order: -1;
+        width: 100%;
+        min-width: 0;
     }
     
     .roi-grid {
@@ -2461,14 +2464,28 @@ input:checked + .slider-round:before {
         gap: 12px;
     }
 
+    /* Constrain all simulation cards */
+    .feature-mock-ui {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+    }
+
     /* Simulator grids */
     .kanban-board-grid {
+        display: grid;
         grid-template-columns: repeat(4, 150px);
         overflow-x: auto;
+        width: 100%;
+        max-width: 100%;
         padding-bottom: 8px;
+        -webkit-overflow-scrolling: touch;
     }
     .kanban-simulator {
         overflow: hidden;
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
     }
     
     .trigger-popup-card {
@@ -2572,6 +2589,16 @@ input:checked + .slider-round:before {
 
     .feature-mock-ui {
         padding: 16px;
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+    }
+
+    .trigger-popup-overlay {
+        top: -16px;
+        left: -16px;
+        right: -16px;
+        bottom: -16px;
     }
 
     .result-profit {
