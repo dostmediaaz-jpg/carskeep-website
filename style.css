@@ -317,13 +317,14 @@ img {
     color: var(--text-primary);
 }
 
-.logo-k {
-    display: inline-block;
-    height: 0.85em;
-    width: auto;
-    vertical-align: -0.05em;
-    margin-left: 0.02em;
-    margin-right: 0.02em;
+.logo-icon {
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+}
+
+.logo-text span {
+    color: var(--primary);
 }
 
 .nav-list {
