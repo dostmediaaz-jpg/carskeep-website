@@ -2251,6 +2251,11 @@ input:checked + .slider-round:before {
     font-weight: 600;
 }
 
+/* Mobile Actions in Navigation Menu */
+.nav-mobile-actions {
+    display: none;
+}
+
 /* ==========================================================================
    MEDIA QUERIES (RESPONSIVE DESIGN)
    ========================================================================== */
@@ -2308,6 +2313,7 @@ input:checked + .slider-round:before {
         flex-direction: column;
         text-align: center;
         gap: 32px;
+        padding: 40px 24px;
     }
     
     .footer-container {
@@ -2332,15 +2338,21 @@ input:checked + .slider-round:before {
     
     .nav-menu {
         position: fixed;
-        top: var(--header-height);
+        top: 100%;
         left: -100%;
         width: 100%;
-        height: calc(100vh - var(--header-height));
+        bottom: 0;
+        height: auto;
         background-color: var(--bg-darker);
         padding: 40px 24px;
         border-top: 1px solid var(--border-color);
         transition: left var(--transition-normal);
         z-index: 999;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
     }
     
     .nav-menu.active {
@@ -2351,10 +2363,23 @@ input:checked + .slider-round:before {
         flex-direction: column;
         gap: 24px;
         align-items: center;
+        width: 100%;
+        margin-bottom: 32px;
     }
     
     .nav-link {
         font-size: 1.25rem;
+        display: block;
+        padding: 8px 0;
+    }
+
+    .nav-mobile-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        width: 100%;
+        max-width: 280px;
+        margin: 0 auto;
     }
     
     .tabs-nav {
@@ -2363,6 +2388,19 @@ input:checked + .slider-round:before {
     
     .testimonials-grid {
         grid-template-columns: 1fr;
+    }
+
+    .testimonial-card {
+        padding: 24px;
+    }
+
+    .roi-result-card {
+        padding: 24px;
+    }
+
+    .result-profit {
+        font-size: 3rem;
+        margin-bottom: 24px;
     }
     
     .footer-links-group {
@@ -2375,25 +2413,46 @@ input:checked + .slider-round:before {
         gap: 16px;
         text-align: center;
     }
-}
 
-@media (max-width: 480px) {
-    .hero-title {
-        font-size: 2.25rem;
-    }
-    
-    .hero-stats {
-        flex-direction: column;
-        gap: 20px;
-    }
-    
-    .tabs-nav {
-        grid-template-columns: 1fr;
+    .faq-icon {
+        flex-shrink: 0;
+        margin-left: 16px;
     }
 }
 
-/* Simulator Mobile Adjustments */
+/* Simulator & Layout Mobile Adjustments */
 @media (max-width: 640px) {
+    .tab-btn {
+        padding: 10px 12px;
+        font-size: 0.85rem;
+    }
+
+    /* Mockup Stacking */
+    .mockup-body {
+        flex-direction: column;
+        height: auto;
+    }
+    .mockup-sidebar {
+        display: none;
+    }
+    .mockup-content {
+        padding: 16px;
+        overflow-y: visible;
+    }
+    .content-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+    .grid-card.col-3, .grid-card.col-9 {
+        grid-column: span 9;
+    }
+    .workflow-columns {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    /* Simulator grids */
     .kanban-board-grid {
         grid-template-columns: repeat(4, 150px);
         overflow-x: auto;
@@ -2402,6 +2461,13 @@ input:checked + .slider-round:before {
     .kanban-simulator {
         overflow: hidden;
     }
+    
+    .trigger-popup-card {
+        width: 100%;
+        max-width: 320px;
+        padding: 16px;
+    }
+
     .inspection-grid {
         grid-template-columns: 1fr;
         gap: 16px;
@@ -2419,6 +2485,96 @@ input:checked + .slider-round:before {
     .phone-frame {
         max-width: 220px;
         margin: 0 auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 0 16px;
+    }
+
+    .header-actions {
+        gap: 10px;
+    }
+
+    .header-banner {
+        font-size: 0.7rem;
+        padding: 8px 12px;
+        line-height: 1.4;
+    }
+
+    .hero-title {
+        font-size: 2.25rem;
+    }
+    
+    .hero-buttons {
+        flex-direction: column;
+        width: 100%;
+        gap: 12px;
+    }
+
+    .hero-buttons .btn {
+        width: 100%;
+    }
+
+    .hero-stats {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .tabs-nav {
+        grid-template-columns: 1fr;
+    }
+
+    .tab-visual-content {
+        padding: 8px;
+    }
+
+    .feature-mock-ui {
+        padding: 16px;
+    }
+
+    .result-profit {
+        font-size: 2.5rem;
+    }
+
+    /* Ledger Form & Table Mobile optimizations */
+    .ledger-sim-table th, .ledger-sim-table td {
+        padding: 6px 4px;
+    }
+    .btn-xs {
+        padding: 2px 4px;
+        font-size: 0.55rem;
+    }
+    .ledger-sim-table {
+        font-size: 0.6rem;
+    }
+
+    .ledger-form {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+    }
+
+    #ledger-type-sel {
+        grid-column: span 1;
+    }
+
+    #ledger-amount-input {
+        grid-column: span 1;
+    }
+
+    #ledger-desc-input {
+        grid-column: span 2;
+    }
+
+    #btn-add-ledger {
+        grid-column: span 2;
+        width: 100%;
+    }
+
+    .pricing-card {
+        padding: 32px 20px;
     }
 }
 

@@ -25,8 +25,8 @@ function initApp() {
         });
         
         // Close menu when clicking on a link
-        const navLinks = document.querySelectorAll('.nav-link');
-        navLinks.forEach(link => {
+        const menuLinks = navMenu.querySelectorAll('a');
+        menuLinks.forEach(link => {
             link.addEventListener('click', () => {
                 navMenu.classList.remove('active');
                 mobileToggle.classList.remove('active');
