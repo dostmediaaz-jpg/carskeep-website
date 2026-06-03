@@ -252,7 +252,7 @@ img {
    HEADER / NAVIGATION
    ========================================================================== */
 .header {
-    position: fixed;
+    position: sticky;
     top: 0;
     left: 0;
     width: 100%;
@@ -373,7 +373,7 @@ img {
    ========================================================================== */
 .hero-section {
     position: relative;
-    padding-top: calc(var(--header-height) + 96px);
+    padding-top: 64px;
     padding-bottom: 96px;
     overflow: hidden;
 }
@@ -2323,8 +2323,17 @@ input:checked + .slider-round:before {
 }
 
 @media (max-width: 768px) {
+    :root {
+        --header-height: 60px;
+    }
+
     .section-title {
         font-size: 2rem;
+    }
+
+    .hero-section {
+        padding-top: 40px;
+        padding-bottom: 48px;
     }
     
     .header-actions .btn-primary,
@@ -2493,14 +2502,45 @@ input:checked + .slider-round:before {
         padding: 0 16px;
     }
 
+    .logo {
+        font-size: 1.1rem;
+        gap: 6px;
+    }
+
+    .logo-icon svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    .theme-toggle {
+        width: 32px;
+        height: 32px;
+    }
+
+    .lang-btn {
+        padding: 6px 10px;
+        font-size: 0.8rem;
+    }
+
     .header-actions {
-        gap: 10px;
+        gap: 8px;
+    }
+
+    .mobile-toggle {
+        width: 20px;
+        height: 14px;
     }
 
     .header-banner {
-        font-size: 0.7rem;
-        padding: 8px 12px;
+        font-size: 0.65rem;
+        padding: 4px 8px;
         line-height: 1.4;
+    }
+
+    .badge {
+        font-size: 0.7rem;
+        padding: 4px 10px;
+        margin-bottom: 16px;
     }
 
     .hero-title {
