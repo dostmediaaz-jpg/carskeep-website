@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -31,10 +31,10 @@
     <script>
         (function() {
             try {
-                const savedTheme = localStorage.getItem('carskeep_theme') || 'dark';
+                const savedTheme = localStorage.getItem('carskeep_theme') || 'light';
                 document.documentElement.setAttribute('data-theme', savedTheme);
             } catch (e) {
-                document.documentElement.setAttribute('data-theme', 'dark');
+                document.documentElement.setAttribute('data-theme', 'light');
             }
         })();
     </script>
