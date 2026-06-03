@@ -712,8 +712,8 @@ img {
 
 .tab-grid {
     display: grid;
-    grid-template-columns: 1fr 1.1fr;
-    gap: 64px;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 40px;
     align-items: center;
 }
 
@@ -750,11 +750,12 @@ img {
 
 .tab-visual-content {
     background: radial-gradient(circle, rgba(59, 130, 246, 0.08) 0%, rgba(0,0,0,0) 70%);
-    padding: 40px;
+    padding: 16px;
     border-radius: var(--radius-lg);
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
 }
 
 .feature-mock-ui {
@@ -765,6 +766,23 @@ img {
     width: 100%;
     max-width: 440px;
     box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    transition: max-width var(--transition-normal);
+}
+
+.feature-mock-ui.kanban-simulator {
+    max-width: 680px;
+}
+
+.feature-mock-ui.inspection-simulator {
+    max-width: 620px;
+}
+
+.feature-mock-ui.crm-waba-simulator {
+    max-width: 620px;
+}
+
+.feature-mock-ui.ledger-simulator {
+    max-width: 620px;
 }
 
 /* ==========================================================================
@@ -2191,3 +2209,34 @@ input:checked + .slider-round:before {
         grid-template-columns: 1fr;
     }
 }
+
+/* Simulator Mobile Adjustments */
+@media (max-width: 640px) {
+    .kanban-board-grid {
+        grid-template-columns: repeat(4, 150px);
+        overflow-x: auto;
+        padding-bottom: 8px;
+    }
+    .kanban-simulator {
+        overflow: hidden;
+    }
+    .inspection-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+    .car-svg-container {
+        height: 200px;
+    }
+    .car-blueprint {
+        height: 180px;
+    }
+    .waba-layout {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+    .phone-frame {
+        max-width: 220px;
+        margin: 0 auto;
+    }
+}
+
