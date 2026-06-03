@@ -234,6 +234,7 @@ function initApp() {
     function updateTimerText() {
         if (!timerLabel) return;
         const dict = window.translations[window.currentLanguage || 'en'];
+        if (!dict) return;
         const mins = String(Math.floor(secondsElapsed / 60)).padStart(2, '0');
         const secs = String(secondsElapsed % 60).padStart(2, '0');
         
@@ -248,6 +249,7 @@ function initApp() {
     function updateKanbanButton() {
         if (!actionBtn) return;
         const dict = window.translations[window.currentLanguage || 'en'];
+        if (!dict) return;
         if (currentStage === 'waiting') {
             actionBtn.textContent = dict.sim_kanban_btn_start;
             actionBtn.className = 'btn btn-primary btn-sm btn-sim-action';
@@ -353,6 +355,7 @@ function initApp() {
         if (!defectLogList) return;
         defectLogList.innerHTML = '';
         const dict = window.translations[window.currentLanguage || 'en'];
+        if (!dict) return;
         
         defects.forEach(defectItem => {
             const li = document.createElement('li');
@@ -433,6 +436,7 @@ function initApp() {
         const days = parseInt(wabaDaysRange.value);
         const brand = wabaBrandSelect.value;
         const dict = window.translations[window.currentLanguage || 'en'];
+        if (!dict) return;
 
         simWabaLtvLbl.textContent = `> ${ltv} ₼`;
         
@@ -505,6 +509,7 @@ function initApp() {
         if (!ledgerTableRows) return;
         ledgerTableRows.innerHTML = '';
         const dict = window.translations[window.currentLanguage || 'en'];
+        if (!dict) return;
 
         ledgerEntries.forEach(entry => {
             const tr = document.createElement('tr');
@@ -622,6 +627,7 @@ function initApp() {
         const avgTicket = parseInt(avgTicketSlider.value);
         const dailyCars = parseInt(dailyCarsSlider.value);
         const dict = window.translations[window.currentLanguage || 'en'];
+        if (!dict) return;
         
         baysValue.textContent = bays;
         avgTicketValue.textContent = `${avgTicket} ₼`;
