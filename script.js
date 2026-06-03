@@ -38,6 +38,108 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /* ==========================================================================
+       LANGUAGE SWITCHER / INTERNATIONALIZATION (i18n)
+       ========================================================================== */
+    const langMenuBtn = document.getElementById('lang-menu-btn');
+    const langDropdownMenu = document.getElementById('lang-dropdown-menu');
+    const langSelector = langMenuBtn ? langMenuBtn.closest('.lang-selector') : null;
+    const currentLangFlag = document.getElementById('current-lang-flag');
+    const currentLangText = document.getElementById('current-lang-text');
+    const dropdownItems = document.querySelectorAll('.dropdown-item');
+
+    // Language flag mapper
+    const flags = {
+        en: '🇬🇧',
+        ru: '🇷🇺',
+        az: '🇦🇿'
+    };
+
+    // Toggle dropdown
+    if (langMenuBtn && langDropdownMenu) {
+        langMenuBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            langSelector.classList.toggle('active');
+            const expanded = langSelector.classList.contains('active');
+            langMenuBtn.setAttribute('aria-expanded', expanded);
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', () => {
+            if (langSelector) {
+                langSelector.classList.remove('active');
+            }
+            if (langMenuBtn) {
+                langMenuBtn.setAttribute('aria-expanded', 'false');
+            }
+        });
+    }
+
+    // Switch language function
+    function switchLanguage(lang) {
+        if (!window.translations || !window.translations[lang]) return;
+        
+        window.currentLanguage = lang;
+        localStorage.setItem('carskeep_lang', lang);
+        document.documentElement.lang = lang;
+
+        // Update dropdown button label & flag
+        if (currentLangFlag) currentLangFlag.textContent = flags[lang] || '🇬🇧';
+        if (currentLangText) currentLangText.textContent = lang.toUpperCase();
+
+        // Update active class on dropdown items
+        dropdownItems.forEach(item => {
+            if (item.getAttribute('data-lang') === lang) {
+                item.classList.add('active');
+            } else {
+                item.classList.remove('active');
+            }
+        });
+
+        // Translate static text elements with data-i18n
+        const translatable = document.querySelectorAll('[data-i18n]');
+        translatable.forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            const translation = window.translations[lang][key];
+            if (translation !== undefined) {
+                if (el.getAttribute('data-i18n-html') === 'true') {
+                    el.innerHTML = translation;
+                } else {
+                    el.textContent = translation;
+                }
+            }
+        });
+
+        // Translate placeholder attributes
+        const placeholders = document.querySelectorAll('[data-i18n-placeholder]');
+        placeholders.forEach(el => {
+            const key = el.getAttribute('data-i18n-placeholder');
+            const translation = window.translations[lang][key];
+            if (translation !== undefined) {
+                el.setAttribute('placeholder', translation);
+            }
+        });
+
+        // Update dynamic details in the simulators
+        updateTimerText();
+        updateKanbanButton();
+        renderDefectLog();
+        updateWabaSimulator();
+        renderLedgerTable();
+        calculateROI();
+    }
+
+    // Set up click handlers on dropdown items
+    dropdownItems.forEach(item => {
+        item.addEventListener('click', (e) => {
+            e.preventDefault();
+            const lang = item.getAttribute('data-lang');
+            switchLanguage(lang);
+            if (langSelector) langSelector.classList.remove('active');
+            if (langMenuBtn) langMenuBtn.setAttribute('aria-expanded', 'false');
+        });
+    });
+
+    /* ==========================================================================
        INTERACTIVE FEATURES TABS
        ========================================================================== */
     const tabButtons = document.querySelectorAll('.tab-btn');
@@ -101,16 +203,41 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function updateTimerText() {
+        if (!timerLabel) return;
+        const dict = window.translations[window.currentLanguage || 'en'];
         const mins = String(Math.floor(secondsElapsed / 60)).padStart(2, '0');
         const secs = String(secondsElapsed % 60).padStart(2, '0');
-        let statusPrefix = 'Принято';
-        if (currentStage === 'progress') statusPrefix = 'В работе';
-        if (currentStage === 'ready') statusPrefix = 'Готово';
-        if (currentStage === 'paid') statusPrefix = 'Оплачено';
+        
+        let statusPrefix = dict.sim_kanban_col_waiting;
+        if (currentStage === 'progress') statusPrefix = dict.sim_kanban_col_progress;
+        if (currentStage === 'ready') statusPrefix = dict.sim_kanban_col_ready;
+        if (currentStage === 'paid') statusPrefix = dict.sim_kanban_col_paid;
+        
         timerLabel.textContent = `${statusPrefix}: ${mins}:${secs}`;
     }
 
+    function updateKanbanButton() {
+        if (!actionBtn) return;
+        const dict = window.translations[window.currentLanguage || 'en'];
+        if (currentStage === 'waiting') {
+            actionBtn.textContent = dict.sim_kanban_btn_start;
+            actionBtn.className = 'btn btn-primary btn-sm btn-sim-action';
+            actionBtn.style.display = 'inline-block';
+        } else if (currentStage === 'progress') {
+            actionBtn.textContent = dict.sim_kanban_btn_complete;
+            actionBtn.className = 'btn btn-primary btn-sm btn-sim-action active-repair';
+            actionBtn.style.display = 'inline-block';
+        } else if (currentStage === 'ready') {
+            actionBtn.textContent = dict.sim_kanban_btn_pay;
+            actionBtn.className = 'btn btn-primary btn-sm btn-sim-action completed';
+            actionBtn.style.display = 'inline-block';
+        } else if (currentStage === 'paid') {
+            actionBtn.style.display = 'none';
+        }
+    }
+
     function updateColumnCounts() {
+        if (!colWaiting) return;
         countWaiting.textContent = `(${colWaiting.querySelectorAll('.kanban-card').length})`;
         countProgress.textContent = `(${colProgress.querySelectorAll('.kanban-card').length})`;
         countReady.textContent = `(${colReady.querySelectorAll('.kanban-card').length})`;
@@ -125,16 +252,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Move to progress
                 currentStage = 'progress';
                 colProgress.appendChild(kanbanCard);
-                actionBtn.textContent = 'Завершить';
-                actionBtn.className = 'btn btn-primary btn-sm btn-sim-action active-repair';
+                updateKanbanButton();
                 startTimer();
                 updateColumnCounts();
             } else if (currentStage === 'progress') {
                 // Move to ready and trigger popup
                 currentStage = 'ready';
                 colReady.appendChild(kanbanCard);
-                actionBtn.textContent = 'Оплатить';
-                actionBtn.className = 'btn btn-primary btn-sm btn-sim-action completed';
+                updateKanbanButton();
                 startTimer();
                 updateColumnCounts();
 
@@ -146,7 +271,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Move to paid
                 currentStage = 'paid';
                 colPaid.appendChild(kanbanCard);
-                actionBtn.style.display = 'none';
+                updateKanbanButton();
                 startTimer();
                 updateColumnCounts();
             }
@@ -165,10 +290,12 @@ document.addEventListener('DOMContentLoaded', () => {
             btnPopupCancel.disabled = true;
             popupStatusMsg.style.display = 'block';
             popupStatusMsg.style.color = '#3b82f6';
-            popupStatusMsg.textContent = '⏳ Pusher dispatching event...';
+            
+            const dict = window.translations[window.currentLanguage || 'en'];
+            popupStatusMsg.textContent = dict.sim_popup_status_dispatch;
             
             setTimeout(() => {
-                popupStatusMsg.textContent = '⚡ Meta WhatsApp Cloud API accepted payload.';
+                popupStatusMsg.textContent = dict.sim_popup_status_accepted;
                 popupStatusMsg.style.color = '#10b981';
                 setTimeout(() => {
                     triggerPopup.style.display = 'none';
@@ -191,7 +318,27 @@ document.addEventListener('DOMContentLoaded', () => {
     const portalLinkBox = document.getElementById('portal-link-box');
     
     let defects = [];
-    const defectTypes = ['Царапина', 'Скол лака', 'Вмятина кузова', 'Трещина бампера'];
+    const defectKeys = ['defect_scratch', 'defect_chip', 'defect_dent', 'defect_crack'];
+
+    function renderDefectLog() {
+        if (!defectLogList) return;
+        defectLogList.innerHTML = '';
+        const dict = window.translations[window.currentLanguage || 'en'];
+        
+        defects.forEach(defectItem => {
+            const li = document.createElement('li');
+            const typeLabel = dict[defectItem.key] || defectItem.key;
+            li.innerHTML = `<span>🔴 <strong>${typeLabel}</strong> (${defectItem.x}, ${defectItem.y})</span>`;
+            defectLogList.appendChild(li);
+        });
+
+        defectCountLabel.textContent = `(${defects.length})`;
+        if (defects.length > 0) {
+            portalLinkBox.style.display = 'block';
+        } else {
+            portalLinkBox.style.display = 'none';
+        }
+    }
 
     if (carSvg) {
         carSvg.addEventListener('click', (e) => {
@@ -211,24 +358,17 @@ document.addEventListener('DOMContentLoaded', () => {
             carSvg.appendChild(circle);
 
             // Log defect
-            const randomType = defectTypes[Math.floor(Math.random() * defectTypes.length)];
+            const randomKey = defectKeys[Math.floor(Math.random() * defectKeys.length)];
             const defectItem = {
                 id: defects.length + 1,
                 x,
                 y,
-                type: randomType,
+                key: randomKey,
                 element: circle
             };
             defects.push(defectItem);
 
-            // Render log row
-            const li = document.createElement('li');
-            li.innerHTML = `<span>🔴 <strong>${defectItem.type}</strong> (${x}, ${y})</span>`;
-            defectLogList.appendChild(li);
-
-            // Update counts
-            defectCountLabel.textContent = `(${defects.length})`;
-            portalLinkBox.style.display = 'block';
+            renderDefectLog();
         });
 
         if (btnClearInspection) {
@@ -238,10 +378,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 dots.forEach(dot => dot.remove());
                 
                 // Clear log
-                defectLogList.innerHTML = '';
                 defects = [];
-                defectCountLabel.textContent = '(0)';
-                portalLinkBox.style.display = 'none';
+                renderDefectLog();
             });
         }
     }
@@ -265,9 +403,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const ltv = parseInt(wabaLtvRange.value);
         const days = parseInt(wabaDaysRange.value);
         const brand = wabaBrandSelect.value;
+        const dict = window.translations[window.currentLanguage || 'en'];
 
         simWabaLtvLbl.textContent = `> ${ltv} ₼`;
-        simWabaDaysLbl.textContent = `> ${days} дн.`;
+        
+        let daysSuffix = 'days';
+        if (window.currentLanguage === 'ru') daysSuffix = 'дн.';
+        else if (window.currentLanguage === 'az') daysSuffix = 'gün';
+        simWabaDaysLbl.textContent = `> ${days} ${daysSuffix}`;
 
         // Calculate size & cost
         let baseCount = 120;
@@ -283,10 +426,13 @@ document.addEventListener('DOMContentLoaded', () => {
         wabaCampaignCost.textContent = `${cost} ₼`;
 
         // Update WhatsApp preview template message
-        let brandName = brand === 'ALL' ? 'автомобиля' : brand;
+        let brandName = brand === 'ALL' ? (dict.sim_crm_waba_preview_vehicle || 'vehicle') : brand;
+        let bodyText = dict.sim_crm_waba_preview_body || '';
+        bodyText = bodyText.replace('{brandName}', brandName).replace('{days}', days);
+
         dynamicWabaTemplate.innerHTML = `
-            <strong>Шаблон WABA:</strong><br>
-            Привет, Самир! Заметили, что ваш ${brandName} не заезжал к нам уже ${days} дней. Дарим вам скидку 10% на следующее ТО. Ваша выгода с CarsKeep!
+            <strong>${dict.sim_crm_waba_preview_title || 'WABA Template:'}</strong><br>
+            ${bodyText}
         `;
     }
 
@@ -308,12 +454,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnAddLedger = document.getElementById('btn-add-ledger');
 
     let ledgerEntries = [
-        { id: 1, type: 'INCOME', amount: 320.00, desc: 'Выручка: Заказ-наряд #1842 (BMW X5)', isStorno: false },
-        { id: 2, type: 'EXPENSE', amount: 120.00, desc: 'Закупка: Тормозные диски Brembo', isStorno: false },
-        { id: 3, type: 'EXPENSE', amount: 40.00, desc: 'Зарплата: мастер Самир', isStorno: false }
+        { id: 1, type: 'INCOME', amount: 320.00, descKey: 'sim_ledger_income_desc_1', isStorno: false },
+        { id: 2, type: 'EXPENSE', amount: 120.00, descKey: 'sim_ledger_expense_desc_1', isStorno: false },
+        { id: 3, type: 'EXPENSE', amount: 40.00, descKey: 'sim_ledger_expense_desc_2', isStorno: false }
     ];
 
     function calculateLedgerProfit() {
+        if (!ledgerNetProfit) return;
         let total = 0;
         ledgerEntries.forEach(entry => {
             if (entry.type === 'INCOME') {
@@ -328,6 +475,8 @@ document.addEventListener('DOMContentLoaded', () => {
     function renderLedgerTable() {
         if (!ledgerTableRows) return;
         ledgerTableRows.innerHTML = '';
+        const dict = window.translations[window.currentLanguage || 'en'];
+
         ledgerEntries.forEach(entry => {
             const tr = document.createElement('tr');
             if (entry.isStorno) {
@@ -337,12 +486,25 @@ document.addEventListener('DOMContentLoaded', () => {
             const typeClass = entry.type === 'INCOME' ? 'ledger-income' : 'ledger-expense';
             const sign = entry.type === 'INCOME' ? '+' : '-';
             
+            let descriptionText = '';
+            if (entry.descKey === 'storno_comp') {
+                const originalText = entry.descParams.originalDesc;
+                descriptionText = `${dict.sim_ledger_storno_prefix || 'Storno: Compensation for'} (${originalText})`;
+            } else if (entry.descKey) {
+                descriptionText = dict[entry.descKey] || entry.descKey;
+            } else {
+                descriptionText = entry.customDesc || '';
+            }
+
+            const btnText = dict.sim_ledger_btn_storno || 'Storno';
+            const voidedText = dict.sim_ledger_storno_voided || 'Voided';
+
             tr.innerHTML = `
                 <td><span class="ledger-badge ${typeClass}">${entry.type}</span></td>
                 <td><strong class="${typeClass}">${sign}${entry.amount.toFixed(2)} ₼</strong></td>
-                <td><span class="ledger-desc-txt">${entry.desc}</span></td>
+                <td><span class="ledger-desc-txt">${descriptionText}</span></td>
                 <td>
-                    ${!entry.isStorno ? `<button class="btn btn-secondary btn-xs btn-storno" data-id="${entry.id}">Сторно</button>` : `<span class="storno-indicator">Аннулировано</span>`}
+                    ${!entry.isStorno ? `<button class="btn btn-secondary btn-xs btn-storno" data-id="${entry.id}">${btnText}</button>` : `<span class="storno-indicator">${voidedText}</span>`}
                 </td>
             `;
             ledgerTableRows.appendChild(tr);
@@ -364,16 +526,16 @@ document.addEventListener('DOMContentLoaded', () => {
         const entry = ledgerEntries.find(e => e.id === id);
         if (!entry || entry.isStorno) return;
 
-        // Mark current as storno-ed
         entry.isStorno = true;
 
-        // Append compensating entry
+        const dict = window.translations[window.currentLanguage || 'en'];
         const oppositeType = entry.type === 'INCOME' ? 'EXPENSE' : 'INCOME';
         const stornoItem = {
             id: ledgerEntries.length + 1,
             type: oppositeType,
             amount: entry.amount,
-            desc: `Сторно: Компенсация за (${entry.desc})`,
+            descKey: 'storno_comp',
+            descParams: { originalDesc: entry.descKey ? dict[entry.descKey] : entry.customDesc },
             isStorno: true
         };
         ledgerEntries.push(stornoItem);
@@ -385,9 +547,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const type = ledgerTypeSel.value;
             const amount = parseFloat(ledgerAmountInput.value);
             const desc = ledgerDescInput.value.trim();
+            const dict = window.translations[window.currentLanguage || 'en'];
 
             if (isNaN(amount) || amount <= 0 || !desc) {
-                alert('Пожалуйста, введите корректную сумму и обоснование.');
+                alert(dict.sim_ledger_alert_invalid || 'Please enter a valid amount and description.');
                 return;
             }
 
@@ -395,12 +558,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 id: ledgerEntries.length + 1,
                 type,
                 amount,
-                desc,
+                customDesc: desc,
                 isStorno: false
             };
             ledgerEntries.push(newItem);
             
-            // reset form inputs
             ledgerAmountInput.value = '50';
             ledgerDescInput.value = '';
 
@@ -426,11 +588,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const calcProductivity = document.getElementById('calc-productivity');
 
     function calculateROI() {
+        if (!baysSlider) return;
         const bays = parseInt(baysSlider.value);
         const avgTicket = parseInt(avgTicketSlider.value);
         const dailyCars = parseInt(dailyCarsSlider.value);
+        const dict = window.translations[window.currentLanguage || 'en'];
         
-        // Update display labels
         baysValue.textContent = bays;
         avgTicketValue.textContent = `${avgTicket} ₼`;
         dailyCarsValue.textContent = dailyCars;
@@ -453,9 +616,11 @@ document.addEventListener('DOMContentLoaded', () => {
         // Productivity increase: base value of 10% plus scaled metric based on volume
         const productivityPercent = Math.min(25, Math.round(10 + (bays * 0.8) + (dailyCars * 0.5)));
         
-        // Update outputs with localized currency styling (ru-RU spacing format with ₼ symbol)
-        calcProfit.textContent = `${additionalProfit.toLocaleString('ru-RU')} ₼`;
-        calcHours.textContent = `${hoursSaved} ч / мес`;
+        // Format with space as thousands separator
+        const formattedProfit = additionalProfit.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+        
+        calcProfit.textContent = `${formattedProfit} ₼`;
+        calcHours.textContent = `${hoursSaved} ${dict.roi_hours_unit || 'hours / mo'}`;
         calcProductivity.textContent = `+${productivityPercent}%`;
     }
 
@@ -521,7 +686,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 answer.style.maxHeight = '0';
             }
             
-            // Optional: Close other open questions (accordion effect)
+            // Close other open questions (accordion effect)
             faqQuestions.forEach(otherQuestion => {
                 if (otherQuestion !== question) {
                     const otherItem = otherQuestion.parentElement;
@@ -549,4 +714,8 @@ document.addEventListener('DOMContentLoaded', () => {
             header.style.boxShadow = 'none';
         }
     });
+
+    // Initialize language from localStorage or default to EN (English)
+    const savedLang = localStorage.getItem('carskeep_lang') || 'en';
+    switchLanguage(savedLang);
 });

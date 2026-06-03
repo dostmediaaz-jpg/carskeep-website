@@ -1,23 +1,23 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CarsKeep — SaaS-платформа для управления автосервисами и детейлинг-центрами</title>
-    <meta name="description" content="Увеличьте выручку вашего автосервиса или детейлинг-центра на 30% с помощью CarsKeep. Цифровые сметы, умное планирование, учет запчастей и оплата в один клик.">
-    <meta name="keywords" content="управление автосервисом, софт для сто, автоматизация детейлинга, shopmonkey, tekmetric, crm для автосервиса, учет запчастей">
+    <title data-i18n="meta_title">CarsKeep — SaaS Platform for Auto Repair Shops and Detailing Centers</title>
+    <meta name="description" content="Increase your auto repair shop or detailing center revenue by 30% with CarsKeep. Digital estimates, smart scheduling, inventory management, and one-click payments.">
+    <meta name="keywords" content="auto repair shop management, software for workshops, detailing automation, shopmonkey, tekmetric, auto shop crm, inventory tracking">
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://carskeep.io/">
-    <meta property="og:title" content="CarsKeep — Умное управление автосервисом">
-    <meta property="og:description" content="Современная облачная ERP для детейлинг-студий и СТО. Избавьтесь от хаоса, оцифруйте сметы и контролируйте склад.">
+    <meta property="og:title" content="CarsKeep — Smart Auto Shop Management">
+    <meta property="og:description" content="Increase your auto repair shop or detailing center revenue by 30% with CarsKeep. Digital estimates, smart scheduling, inventory management, and one-click payments.">
     <meta property="og:image" content="assets/og-image.jpg">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:title" content="CarsKeep — Умное управление автосервисом">
-    <meta property="twitter:description" content="Современная облачная ERP для детейлинг-студий и СТО. Избавьтесь от хаоса, оцифруйте сметы и контролируйте склад.">
+    <meta property="twitter:title" content="CarsKeep — Smart Auto Shop Management">
+    <meta property="twitter:description" content="Increase your auto repair shop or detailing center revenue by 30% with CarsKeep. Digital estimates, smart scheduling, inventory management, and one-click payments.">
 
     <!-- Google Fonts: Outfit & Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -42,17 +42,42 @@
             
             <nav class="nav-menu" id="nav-menu">
                 <ul class="nav-list">
-                    <li><a href="#features" class="nav-link">Возможности</a></li>
-                    <li><a href="#roi-calculator" class="nav-link">Расчет окупаемости</a></li>
-                    <li><a href="#pricing" class="nav-link">Тарифы</a></li>
-                    <li><a href="#faq" class="nav-link">FAQ</a></li>
+                    <li><a href="#features" class="nav-link" data-i18n="nav_features">Features</a></li>
+                    <li><a href="#roi-calculator" class="nav-link" data-i18n="nav_roi">ROI Calculator</a></li>
+                    <li><a href="#pricing" class="nav-link" data-i18n="nav_pricing">Pricing</a></li>
+                    <li><a href="#faq" class="nav-link" data-i18n="nav_faq">FAQ</a></li>
                 </ul>
             </nav>
 
             <div class="header-actions">
-                <a href="#login" class="btn btn-text" id="btn-login">Войти</a>
-                <a href="#pricing" class="btn btn-primary" id="btn-cta-nav">Начать бесплатно</a>
-                <button class="mobile-toggle" id="mobile-toggle-btn" aria-label="Открыть меню">
+                <!-- Language Selector -->
+                <div class="lang-selector dropdown">
+                    <button class="lang-btn" id="lang-menu-btn" aria-haspopup="true" aria-expanded="false">
+                        <span class="lang-flag" id="current-lang-flag">🇬🇧</span>
+                        <span class="lang-text" id="current-lang-text">EN</span>
+                        <svg class="dropdown-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                    <div class="dropdown-menu" id="lang-dropdown-menu" aria-labelledby="lang-menu-btn">
+                        <a href="#" class="dropdown-item active" data-lang="en">
+                            <span class="lang-flag">🇬🇧</span>
+                            <span>EN</span>
+                        </a>
+                        <a href="#" class="dropdown-item" data-lang="ru">
+                            <span class="lang-flag">🇷🇺</span>
+                            <span>RU</span>
+                        </a>
+                        <a href="#" class="dropdown-item" data-lang="az">
+                            <span class="lang-flag">🇦🇿</span>
+                            <span>AZ</span>
+                        </a>
+                    </div>
+                </div>
+
+                <a href="#login" class="btn btn-text" id="btn-login" data-i18n="nav_login">Log In</a>
+                <a href="#pricing" class="btn btn-primary" id="btn-cta-nav" data-i18n="nav_cta">Start Free</a>
+                <button class="mobile-toggle" id="mobile-toggle-btn" aria-label="Open menu">
                     <span class="bar"></span>
                     <span class="bar"></span>
                     <span class="bar"></span>
@@ -67,32 +92,32 @@
             <div class="hero-glow"></div>
             <div class="container hero-container">
                 <div class="hero-content">
-                    <div class="badge" id="hero-badge">⚡ Обновление 2.0: Интеграция с мессенджерами</div>
-                    <h1 class="hero-title">Управляйте вашим автосервисом на <span class="text-gradient">новом уровне</span></h1>
-                    <p class="hero-subtitle">CarsKeep — это современная SaaS-платформа для автосервисов и детейлинг-студий. Сокращайте время на сметы, автоматизируйте склад и повышайте прибыль на 30%.</p>
+                    <div class="badge" id="hero-badge" data-i18n="hero_badge">⚡ Update 2.0: Messenger Integration</div>
+                    <h1 class="hero-title" data-i18n="hero_title" data-i18n-html="true">Manage your auto service at a <span class="text-gradient">new level</span></h1>
+                    <p class="hero-subtitle" data-i18n="hero_subtitle">CarsKeep is a modern SaaS platform for auto repair shops and detailing studios. Reduce estimate times, automate inventory, and increase profit by 30%.</p>
                     <div class="hero-buttons">
-                        <a href="#pricing" class="btn btn-primary btn-lg" id="hero-primary-cta">Начать бесплатно</a>
+                        <a href="#pricing" class="btn btn-primary btn-lg" id="hero-primary-cta" data-i18n="hero_cta_primary">Start Free</a>
                         <a href="#features" class="btn btn-secondary btn-lg" id="hero-secondary-cta">
                             <span class="play-icon">
                                 <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M11.596 8.697l-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"/>
                                 </svg>
                             </span>
-                            Узнать больше
+                            <span data-i18n="hero_cta_secondary">Learn More</span>
                         </a>
                     </div>
                     <div class="hero-stats">
                         <div class="stat-item">
-                            <div class="stat-num">30%</div>
-                            <div class="stat-label">Рост выручки СТО</div>
+                            <div class="stat-num" data-i18n="hero_stat_revenue_num">30%</div>
+                            <div class="stat-label" data-i18n="hero_stat_revenue_lbl">Revenue Growth</div>
                         </div>
                         <div class="stat-item">
-                            <div class="stat-num">14 дней</div>
-                            <div class="stat-label">Бесплатный период</div>
+                            <div class="stat-num" data-i18n="hero_stat_trial_num">14 days</div>
+                            <div class="stat-label" data-i18n="hero_stat_trial_lbl">Free Trial Period</div>
                         </div>
                         <div class="stat-item">
-                            <div class="stat-num">1.5 часа</div>
-                            <div class="stat-label">Экономии мастера ежедневно</div>
+                            <div class="stat-num" data-i18n="hero_stat_time_num">1.5 hours</div>
+                            <div class="stat-label" data-i18n="hero_stat_time_lbl">Daily Mechanic Time Saved</div>
                         </div>
                     </div>
                 </div>
@@ -104,7 +129,7 @@
                             <div class="mockup-dots">
                                 <span></span><span></span><span></span>
                             </div>
-                            <div class="mockup-search">carskeep.az/dashboard</div>
+                            <div class="mockup-search" id="mockup-search-url" data-i18n="mockup_search">carskeep.io/dashboard</div>
                         </div>
                         <div class="mockup-body">
                             <!-- Sidebar -->
@@ -119,34 +144,34 @@
                             <!-- Content -->
                             <div class="mockup-content">
                                 <div class="content-header">
-                                    <div class="content-title">Рабочий стол</div>
-                                    <div class="content-user">STO Admin</div>
+                                    <div class="content-title" data-i18n="mockup_desktop">Dashboard</div>
+                                    <div class="content-user" data-i18n="mockup_user">STO Admin</div>
                                 </div>
                                 <div class="content-grid">
                                     <div class="grid-card col-3">
-                                        <span class="card-label">Выручка за месяц</span>
+                                        <span class="card-label" data-i18n="mockup_revenue">Monthly Revenue</span>
                                         <span class="card-value">24 850 ₼</span>
-                                        <span class="card-trend upward">+12.4% от прош. месяца</span>
+                                        <span class="card-trend upward" data-i18n="mockup_revenue_trend">+12.4% from last month</span>
                                     </div>
                                     <div class="grid-card col-3">
-                                        <span class="card-label">Заказы в работе</span>
-                                        <span class="card-value">18 авто</span>
-                                        <span class="card-trend text-blue">Загрузка боксов 85%</span>
+                                        <span class="card-label" data-i18n="mockup_orders">Active Orders</span>
+                                        <span class="card-value" data-i18n="mockup_orders_val">18 cars</span>
+                                        <span class="card-trend text-blue" data-i18n="mockup_orders_trend">Bay Utilization 85%</span>
                                     </div>
                                     <div class="grid-card col-3">
-                                        <span class="card-label">Средний чек</span>
+                                        <span class="card-label" data-i18n="mockup_ticket">Average Ticket</span>
                                         <span class="card-value">320 ₼</span>
-                                        <span class="card-trend upward">+4.2%</span>
+                                        <span class="card-trend upward" data-i18n="mockup_ticket_trend">+4.2%</span>
                                     </div>
                                     <!-- Kanban/Workflow Panel -->
                                     <div class="grid-card col-9 mockup-workflow">
-                                        <div class="workflow-header">Расписание и посты</div>
+                                        <div class="workflow-header" data-i18n="mockup_schedule">Schedule & Bays</div>
                                         <div class="workflow-columns">
                                             <div class="wf-col">
-                                                <div class="wf-col-title">Очередь (4)</div>
+                                                <div class="wf-col-title" data-i18n="mockup_queue">Queue (4)</div>
                                                 <div class="wf-card">
                                                     <span class="car-brand">Audi Q7</span>
-                                                    <span class="service-type">ТО и замена масла</span>
+                                                    <span class="service-type" data-i18n="mockup_service_audi">Maintenance & oil change</span>
                                                     <div class="wf-footer">
                                                         <span class="time">10:00</span>
                                                         <span class="avatar">👨‍🔧</span>
@@ -154,7 +179,7 @@
                                                 </div>
                                                 <div class="wf-card">
                                                     <span class="car-brand">BMW X5</span>
-                                                    <span class="service-type">Диагностика подвески</span>
+                                                    <span class="service-type" data-i18n="mockup_service_bmw">Suspension diagnosis</span>
                                                     <div class="wf-footer">
                                                         <span class="time">11:30</span>
                                                         <span class="avatar">👨‍🔧</span>
@@ -162,24 +187,24 @@
                                                 </div>
                                             </div>
                                             <div class="wf-col">
-                                                <div class="wf-col-title">В ремонте (2)</div>
+                                                <div class="wf-col-title" data-i18n="mockup_in_progress">In Progress (2)</div>
                                                 <div class="wf-card active-repair">
                                                     <span class="car-brand">Tesla Model 3</span>
-                                                    <span class="service-type">Шумоизоляция дверей</span>
+                                                    <span class="service-type" data-i18n="mockup_service_tesla">Door soundproofing</span>
                                                     <div class="wf-progress-bar"><div class="progress-fill" style="width: 75%;"></div></div>
                                                     <div class="wf-footer">
-                                                        <span class="status">В процессе 75%</span>
+                                                        <span class="status" data-i18n="mockup_status_tesla">In progress 75%</span>
                                                         <span class="avatar">👨‍🔧</span>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="wf-col">
-                                                <div class="wf-col-title">Готово (3)</div>
+                                                <div class="wf-col-title" data-i18n="mockup_ready">Ready (3)</div>
                                                 <div class="wf-card completed">
                                                     <span class="car-brand">Porsche Cayenne</span>
-                                                    <span class="service-type">Детейлинг и полировка</span>
+                                                    <span class="service-type" data-i18n="mockup_service_porsche">Detailing & polishing</span>
                                                     <div class="wf-footer">
-                                                        <span class="status-done">Готов к выдаче</span>
+                                                        <span class="status-done" data-i18n="mockup_status_porsche">Ready for delivery</span>
                                                         <span class="avatar">👨‍🔧</span>
                                                     </div>
                                                 </div>
@@ -198,24 +223,24 @@
         <section class="features-section" id="features">
             <div class="container">
                 <div class="section-header text-center">
-                    <h2 class="section-title">Все инструменты для <span class="text-gradient">роста автобизнеса</span></h2>
-                    <p class="section-subtitle">Забудьте про хаос в Excel и бумажные блокноты. Управляйте процессами с любого устройства.</p>
+                    <h2 class="section-title" data-i18n="features_title" data-i18n-html="true">All tools to <span class="text-gradient">grow your auto business</span></h2>
+                    <p class="section-subtitle" data-i18n="features_subtitle">Forget about Excel chaos and paper notebooks. Manage processes from any device.</p>
                 </div>
 
                 <!-- Tabs Container -->
                 <div class="features-tabs-container">
                     <div class="tabs-nav" id="features-tabs-nav" role="tablist">
-                        <button class="tab-btn active" role="tab" aria-selected="true" aria-controls="tab-kanban" id="btn-tab-kanban">
-                            📋 Kanban-доска и Статусы
+                        <button class="tab-btn active" role="tab" aria-selected="true" aria-controls="tab-kanban" id="btn-tab-kanban" data-i18n="tab_kanban_btn">
+                            📋 Kanban Board & Statuses
                         </button>
-                        <button class="tab-btn" role="tab" aria-selected="false" aria-controls="tab-inspection" id="btn-tab-inspection">
-                            🚗 Кузовной Осмотр и Схемы
+                        <button class="tab-btn" role="tab" aria-selected="false" aria-controls="tab-inspection" id="btn-tab-inspection" data-i18n="tab_inspection_btn">
+                            🚗 Body Inspection & Blueprints
                         </button>
-                        <button class="tab-btn" role="tab" aria-selected="false" aria-controls="tab-crm-waba" id="btn-tab-crm-waba">
-                            💬 WhatsApp CRM и Рассылки
+                        <button class="tab-btn" role="tab" aria-selected="false" aria-controls="tab-crm-waba" id="btn-tab-crm-waba" data-i18n="tab_crm_btn">
+                            💬 WhatsApp CRM & Campaigns
                         </button>
-                        <button class="tab-btn" role="tab" aria-selected="false" aria-controls="tab-ledger" id="btn-tab-ledger">
-                            ₼ Ledger-учет и Финансы
+                        <button class="tab-btn" role="tab" aria-selected="false" aria-controls="tab-ledger" id="btn-tab-ledger" data-i18n="tab_ledger_btn">
+                            ₼ Ledger Accounting & Finance
                         </button>
                     </div>
 
@@ -224,23 +249,23 @@
                         <div class="tab-pane active" id="tab-kanban" role="tabpanel">
                             <div class="tab-grid">
                                 <div class="tab-text-content">
-                                    <h3>Контролируйте каждый этап ремонта в реальном времени</h3>
-                                    <p>Интерактивная Kanban-доска CarsKeep отображает статус каждого заказа. Система автоматически считает время нахождения машины на каждом посту (хронометраж) для выявления простоев.</p>
+                                    <h3 data-i18n="tab_kanban_title">Control every stage of repair in real time</h3>
+                                    <p data-i18n="tab_kanban_desc">CarsKeep interactive Kanban board displays the status of each order. The system automatically tracks the time spent at each post (time tracking) to identify bottlenecks.</p>
                                     <ul class="feature-bullets">
-                                        <li><span>✔</span> <strong>Хронометраж постов:</strong> Точное отслеживание времени в каждом статусе (Принято, В работе, Готово).</li>
-                                        <li><span>✔</span> <strong>Автоматические триггеры:</strong> Переход в статус «Готово» автоматически готовит шаблон сообщения в WhatsApp для отправки клиенту.</li>
-                                        <li><span>✔</span> <strong>Pusher WebSocket:</strong> Синхронизация изменений статусов между всеми экранами менеджеров и мастеров без перезагрузки страниц.</li>
+                                        <li><span>✔</span> <span data-i18n="tab_kanban_bullet_1">Post Time Tracking: Precise tracking of time in each status (Received, In Progress, Ready).</span></li>
+                                        <li><span>✔</span> <span data-i18n="tab_kanban_bullet_2">Automatic Triggers: Transition to 'Ready' automatically prepares a WhatsApp message template for the client.</span></li>
+                                        <li><span>✔</span> <span data-i18n="tab_kanban_bullet_3">Pusher WebSocket: Real-time status sync between all manager and mechanic screens without page reloads.</span></li>
                                     </ul>
                                 </div>
                                 <div class="tab-visual-content">
                                     <div class="feature-mock-ui kanban-simulator">
                                         <div class="kanban-sim-header">
-                                            <span>Симулятор Kanban-доски</span>
-                                            <span class="sim-badge">Попробуйте кликнуть!</span>
+                                            <span data-i18n="sim_kanban_title">Kanban Board Simulator</span>
+                                            <span class="sim-badge" data-i18n="sim_kanban_badge">Try clicking!</span>
                                         </div>
                                         <div class="kanban-board-grid">
                                             <div class="kanban-col" id="col-waiting">
-                                                <div class="kanban-col-title">В очереди <span class="col-count" id="count-waiting">(1)</span></div>
+                                                <div class="kanban-col-title"><span data-i18n="sim_kanban_col_waiting">Queue</span> <span class="col-count" id="count-waiting">(1)</span></div>
                                                 <div class="kanban-card-wrapper" id="sim-card-container">
                                                     <div class="kanban-card" id="kanban-sim-card">
                                                         <div class="card-top">
@@ -248,26 +273,26 @@
                                                             <span class="plate-tag">99-LN-777</span>
                                                         </div>
                                                         <div class="card-middle">
-                                                            <div class="service-name">Полировка кузова + Керамика</div>
+                                                            <div class="service-name" data-i18n="sim_kanban_card_service">Body Polishing + Ceramic</div>
                                                             <div class="timer-row">
                                                                 <span class="timer-icon">⏱</span>
-                                                                <span id="card-status-duration">Принято: 00:00</span>
+                                                                <span id="card-status-duration">Received: 00:00</span>
                                                             </div>
                                                         </div>
                                                         <div class="card-bottom">
-                                                            <button class="btn btn-primary btn-sm btn-sim-action" id="kanban-action-btn">В работу</button>
+                                                            <button class="btn btn-primary btn-sm btn-sim-action" id="kanban-action-btn" data-i18n="sim_kanban_btn_start">Start repair</button>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="kanban-col" id="col-progress">
-                                                <div class="kanban-col-title">В ремонте <span class="col-count" id="count-progress">(0)</span></div>
+                                                <div class="kanban-col-title"><span data-i18n="sim_kanban_col_progress">In Progress</span> <span class="col-count" id="count-progress">(0)</span></div>
                                             </div>
                                             <div class="kanban-col" id="col-ready">
-                                                <div class="kanban-col-title">Готово <span class="col-count" id="count-ready">(0)</span></div>
+                                                <div class="kanban-col-title"><span data-i18n="sim_kanban_col_ready">Ready</span> <span class="col-count" id="count-ready">(0)</span></div>
                                             </div>
                                             <div class="kanban-col" id="col-paid">
-                                                <div class="kanban-col-title">Оплачено <span class="col-count" id="count-paid">(0)</span></div>
+                                                <div class="kanban-col-title"><span data-i18n="sim_kanban_col_paid">Paid</span> <span class="col-count" id="count-paid">(0)</span></div>
                                             </div>
                                         </div>
                                         
@@ -275,15 +300,15 @@
                                         <div class="trigger-popup-overlay" id="trigger-popup">
                                             <div class="trigger-popup-card">
                                                 <div class="popup-icon">🔔</div>
-                                                <h4>Автоматический WhatsApp триггер</h4>
-                                                <p>Сработал системный триггер <strong>JOBCARD_READY</strong>. Отправить клиенту сервисное сообщение по Meta WABA шаблону?</p>
+                                                <h4 data-i18n="sim_popup_title">Automatic WhatsApp Trigger</h4>
+                                                <p data-i18n="sim_popup_desc">System trigger <strong>JOBCARD_READY</strong>. Send service message to client via Meta WABA template?</p>
                                                 <div class="waba-template-preview">
-                                                    <strong>Шаблон: «Уведомление о готовности»</strong>
-                                                    <p>«Уважаемый Самир! Ваш автомобиль <strong>BMW X5 (99-LN-777)</strong> успешно готов к выдаче. Стоимость обслуживания: <strong>320.00 ₼</strong>. Ждем вас!»</p>
+                                                    <strong data-i18n="sim_popup_template_title">Template: 'Ready Notification'</strong>
+                                                    <p id="sim-popup-template-body-text">«Dear Samir! Your car BMW X5 (99-LN-777) is ready. Maintenance cost: 320.00 ₼. We are waiting for you!»</p>
                                                 </div>
                                                 <div class="popup-actions">
-                                                    <button class="btn btn-secondary btn-sm" id="btn-popup-cancel">Отклонить</button>
-                                                    <button class="btn btn-primary btn-sm" id="btn-popup-send">Отправить WABA</button>
+                                                    <button class="btn btn-secondary btn-sm" id="btn-popup-cancel" data-i18n="sim_popup_btn_cancel">Dismiss</button>
+                                                    <button class="btn btn-primary btn-sm" id="btn-popup-send" data-i18n="sim_popup_btn_send">Send WABA</button>
                                                 </div>
                                                 <div class="popup-status-alert" id="popup-status-msg"></div>
                                             </div>
@@ -297,19 +322,19 @@
                         <div class="tab-pane" id="tab-inspection" role="tabpanel">
                             <div class="tab-grid">
                                 <div class="tab-text-content">
-                                    <h3>Интерактивная разметка дефектов на схеме автомобиля</h3>
-                                    <p>Оцифруйте приемку автомобиля за минуту. Фиксируйте царапины, вмятины и сколы прямо на интерактивной 2D-схеме кузова. Клиент увидит все отметки и прикрепленные фото в своем личном статус-портале.</p>
+                                    <h3 data-i18n="tab_inspect_title">Interactive defect marking on vehicle blueprint</h3>
+                                    <p data-i18n="tab_inspect_desc">Digitize vehicle check-in in a minute. Mark scratches, dents, and chips directly on the interactive 2D body layout. The client will see all marks and attached photos in their public status portal.</p>
                                     <ul class="feature-bullets">
-                                        <li><span>✔</span> <strong>Осмотр в 1 клик:</strong> Нажимайте на детали кузова на схеме, чтобы мгновенно добавить дефект в чек-лист.</li>
-                                        <li><span>✔</span> <strong>Прозрачность для клиента:</strong> Формируйте публичный статус-портал (Public Report Link) с фотофиксацией повреждений для защиты от спорных ситуаций.</li>
-                                        <li><span>✔</span> <strong>Уверенное досогласование:</strong> Добавляйте фото дефектов к смете, отправляя клиенту в WhatsApp на согласование.</li>
+                                        <li><span>✔</span> <span data-i18n="tab_inspect_bullet_1">1-Click Inspection: Tap body parts on the blueprint to instantly add a defect to the checklist.</span></li>
+                                        <li><span>✔</span> <span data-i18n="tab_inspect_bullet_2">Client Transparency: Generate a public status portal (Public Report Link) with photo records to prevent disputes.</span></li>
+                                        <li><span>✔</span> <span data-i18n="tab_inspect_bullet_3">Confident Upselling: Add photos of defects to the estimate and send to the client via WhatsApp for approval.</span></li>
                                     </ul>
                                 </div>
                                 <div class="tab-visual-content">
                                     <div class="feature-mock-ui inspection-simulator">
                                         <div class="inspection-sim-header">
-                                            <span>Кузовной осмотр автомобиля</span>
-                                            <button class="btn btn-secondary btn-sm" id="btn-clear-inspection">Очистить все</button>
+                                            <span data-i18n="sim_inspect_title">Vehicle Body Inspection</span>
+                                            <button class="btn btn-secondary btn-sm" id="btn-clear-inspection" data-i18n="sim_inspect_btn_clear">Clear All</button>
                                         </div>
                                         <div class="inspection-grid">
                                             <div class="car-svg-container">
@@ -326,14 +351,14 @@
                                                 </svg>
                                             </div>
                                             <div class="inspection-sidebar">
-                                                <h5>Дефекты кузова <span class="def-count" id="defect-count">(0)</span></h5>
-                                                <p class="inspection-hint">Нажмите на схему слева для отметки повреждения</p>
+                                                <h5><span data-i18n="sim_inspect_defects_title">Body Defects</span> <span class="def-count" id="defect-count">(0)</span></h5>
+                                                <p class="inspection-hint" data-i18n="sim_inspect_hint">Click on the blueprint on the left to mark damage</p>
                                                 <ul class="defect-log" id="defect-log-list">
                                                     <!-- Dynamic logged defects -->
                                                 </ul>
                                                 <div class="portal-link-box" id="portal-link-box" style="display:none;">
-                                                    <span class="portal-lbl">Сгенерирован отчет:</span>
-                                                    <a href="#portal" class="portal-url" onclick="event.preventDefault(); alert('Открывается публичный статус-портал клиента со схемой повреждений и фотографиями.');">status.carskeep.az/job/1842 ↗</a>
+                                                    <span class="portal-lbl" data-i18n="sim_inspect_report_generated">Report generated:</span>
+                                                    <a href="#portal" class="portal-url" onclick="event.preventDefault(); alert(translations[window.currentLanguage || 'en'].sim_inspect_alert_msg);">status.carskeep.io/job/1842 ↗</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -346,23 +371,23 @@
                         <div class="tab-pane" id="tab-crm-waba" role="tabpanel">
                             <div class="tab-grid">
                                 <div class="tab-text-content">
-                                    <h3>Умный сборщик аудиторий и рассылки в WhatsApp</h3>
-                                    <p>CarsKeep интегрирует официальный API WhatsApp Business. Запускайте массовые рассылки по сегментам базы (например: «все владельцы Mercedes с LTV > 1000 ₼, не приезжавшие 90 дней») без риска блокировки номера.</p>
+                                    <h3 data-i18n="tab_crm_title">Smart audience builder and WhatsApp campaigns</h3>
+                                    <p data-i18n="tab_crm_desc">CarsKeep integrates the official WhatsApp Business API. Launch mass broadcasts to customer segments (e.g., 'all Mercedes owners with LTV > 1000 ₼ who haven't visited in 90 days') without the risk of number blocking.</p>
                                     <ul class="feature-bullets">
-                                        <li><span>✔</span> <strong>Гибкий сегментатор:</strong> Объединяйте фильтры по LTV, дате последнего визита, марке автомобиля и тегам с помощью логики И/ИЛИ.</li>
-                                        <li><span>✔</span> <strong>Калькулятор рассылки:</strong> Система автоматически считает количество получателей и смету рассылки по официальным тарифам Meta (E.164) до запуска.</li>
-                                        <li><span>✔</span> <strong>Автоответчик:</strong> Автоматический ответ клиенту в нерабочее время с защитой от флуда (не чаще 1 раза в сутки).</li>
+                                        <li><span>✔</span> <span data-i18n="tab_crm_bullet_1">Flexible Segmenter: Combine filters for LTV, last visit date, car brand, and tags using AND/OR logic.</span></li>
+                                        <li><span>✔</span> <span data-i18n="tab_crm_bullet_2">Campaign Cost Calculator: The system automatically calculates the number of recipients and the message budget at official Meta rates (E.164) before launching.</span></li>
+                                        <li><span>✔</span> <span data-i18n="tab_crm_bullet_3">Auto-Responder: Automatic reply to customers during off-hours with flood protection (no more than once a day).</span></li>
                                     </ul>
                                 </div>
                                 <div class="tab-visual-content">
                                     <div class="feature-mock-ui crm-waba-simulator">
                                         <div class="waba-layout">
                                             <div class="waba-filters">
-                                                <h5>Сборщик аудиторий</h5>
+                                                <h5 data-i18n="sim_crm_title">Audience Builder</h5>
                                                 
                                                 <div class="waba-control-group">
                                                     <div class="control-label">
-                                                        <span>LTV Клиента</span>
+                                                        <span data-i18n="sim_crm_ltv">Customer LTV</span>
                                                         <strong id="sim-waba-ltv-lbl">> 500 ₼</strong>
                                                     </div>
                                                     <input type="range" id="waba-ltv-range" min="100" max="2000" step="100" value="500" class="range-slider-sm">
@@ -370,18 +395,18 @@
                                                 
                                                 <div class="waba-control-group">
                                                     <div class="control-label">
-                                                        <span>Дней без визита</span>
-                                                        <strong id="sim-waba-days-lbl">> 60 дн.</strong>
+                                                        <span data-i18n="sim_crm_days">Days since last visit</span>
+                                                        <strong id="sim-waba-days-lbl">> 60 days</strong>
                                                     </div>
                                                     <input type="range" id="waba-days-range" min="15" max="180" step="5" value="60" class="range-slider-sm">
                                                 </div>
                                                 
                                                 <div class="waba-control-group">
                                                     <div class="control-label">
-                                                        <span>Марка автомобиля</span>
+                                                        <span data-i18n="sim_crm_brand">Car brand</span>
                                                     </div>
                                                     <select id="waba-brand-select" class="waba-select">
-                                                        <option value="ALL">Все марки</option>
+                                                        <option value="ALL" data-i18n="sim_crm_all_brands">All brands</option>
                                                         <option value="BMW" selected>BMW</option>
                                                         <option value="Mercedes">Mercedes</option>
                                                         <option value="Toyota">Toyota</option>
@@ -389,8 +414,8 @@
                                                 </div>
                                                 
                                                 <div class="waba-stats-box">
-                                                    <div class="stat-line">Найдено клиентов: <strong id="waba-audience-count">24</strong></div>
-                                                    <div class="stat-line">Бюджет Meta WABA: <strong id="waba-campaign-cost">1.20 ₼</strong></div>
+                                                    <div class="stat-line"><span data-i18n="sim_crm_found_count">Customers found:</span> <strong id="waba-audience-count">24</strong></div>
+                                                    <div class="stat-line"><span data-i18n="sim_crm_budget">Meta WABA budget:</span> <strong id="waba-campaign-cost">1.20 ₼</strong></div>
                                                 </div>
                                             </div>
                                             <div class="waba-phone">
@@ -399,16 +424,16 @@
                                                         <div class="phone-header">
                                                             <span class="back-arrow">←</span>
                                                             <div class="header-user">
-                                                                <span class="user-avatar-sm">С</span>
+                                                                <span class="user-avatar-sm">S</span>
                                                                 <div class="user-meta-sm">
-                                                                    <span class="u-name">Самир (BMW X5)</span>
-                                                                    <span class="u-status"><span class="dot-online"></span>В сети</span>
+                                                                    <span class="u-name" data-i18n="sim_crm_phone_title">Samir (BMW X5)</span>
+                                                                    <span class="u-status"><span class="dot-online"></span><span data-i18n="sim_crm_phone_status">Online</span></span>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div class="phone-chat-body" id="phone-chat-content">
                                                             <!-- Dynamic generated template content -->
-                                                            <div class="msg received">Привет! Что по поводу полировки фар?</div>
+                                                            <div class="msg received" data-i18n="sim_crm_msg_received">Hey! What about headlight polishing?</div>
                                                             <div class="msg sent template-msg" id="dynamic-waba-template">
                                                                 <!-- JS injected text -->
                                                             </div>
@@ -426,28 +451,28 @@
                         <div class="tab-pane" id="tab-ledger" role="tabpanel">
                             <div class="tab-grid">
                                 <div class="tab-text-content">
-                                    <h3>Двойная Ledger-бухгалтерия и аудит прибыли</h3>
-                                    <p>В основе финансового учета CarsKeep лежит регламент Ledger — append-only реестр неизменяемых финансовых проводок. Никаких «исправлений задним числом». Любые корректировки вносятся компенсирующими записями (STORNO) для полной аудиторской чистоты.</p>
+                                    <h3 data-i18n="tab_ledger_title">Double-entry Ledger accounting and profit audit</h3>
+                                    <p data-i18n="tab_ledger_desc">CarsKeep's financial module is built on Ledger guidelines — an append-only registry of immutable financial transactions. No 'retroactive edits'. Any corrections are entered via compensating entries (STORNO) for complete audit trail integrity.</p>
                                     <ul class="feature-bullets">
-                                        <li><span>✔</span> <strong>Защита от воровства:</strong> Невозможно молча удалить или изменить закрытую кассовую операцию. Каждый шаг логгируется.</li>
-                                        <li><span>✔</span> <strong>Регламент STORNO:</strong> Отмена проведенных расходов или аннулирование смет выполняется созданием корректирующей компенсирующей проводки.</li>
-                                        <li><span>✔</span> <strong>Закрытие периодов:</strong> Возможность закрывать финансовый период в конце месяца для блокировки изменений в кассах и зарплатах.</li>
+                                        <li><span>✔</span> <span data-i18n="tab_ledger_bullet_1">Theft Protection: Closed cash transactions cannot be silently deleted or edited. Every action is logged.</span></li>
+                                        <li><span>✔</span> <span data-i18n="tab_ledger_bullet_2">STORNO Rule: Canceling expenses or voiding invoices is done by creating a compensating transaction.</span></li>
+                                        <li><span>✔</span> <span data-i18n="tab_ledger_bullet_3">Period Closing: Lock financial periods at month-end to prevent changes in cash registers and wages.</span></li>
                                     </ul>
                                 </div>
                                 <div class="tab-visual-content">
                                     <div class="feature-mock-ui ledger-simulator">
                                         <div class="ledger-sim-header">
-                                            <span>Журнал Ledger (Append-only)</span>
-                                            <span class="ledger-profit-badge">Чистая прибыль: <strong id="ledger-net-profit">240.00 ₼</strong></span>
+                                            <span data-i18n="sim_ledger_title">Ledger Log (Append-only)</span>
+                                            <span class="ledger-profit-badge"><span data-i18n="sim_ledger_profit_badge">Net profit:</span> <strong id="ledger-net-profit">240.00 ₼</strong></span>
                                         </div>
                                         <div class="ledger-table-container">
                                             <table class="ledger-sim-table" id="ledger-table">
                                                 <thead>
                                                     <tr>
-                                                        <th>Операция</th>
-                                                        <th>Сумма</th>
-                                                        <th>Описание</th>
-                                                        <th>Действие</th>
+                                                        <th data-i18n="sim_ledger_col_op">Transaction</th>
+                                                        <th data-i18n="sim_ledger_col_amount">Amount</th>
+                                                        <th data-i18n="sim_ledger_col_desc">Description</th>
+                                                        <th data-i18n="sim_ledger_col_action">Action</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody id="ledger-rows">
@@ -457,15 +482,15 @@
                                         </div>
                                         
                                         <div class="ledger-add-box">
-                                            <h5>Создать корректирующую проводку</h5>
+                                            <h5 data-i18n="sim_ledger_form_title">Create compensating entry</h5>
                                             <div class="ledger-form">
                                                 <select id="ledger-type-sel" class="ledger-input">
-                                                    <option value="INCOME">INCOME (Доход)</option>
-                                                    <option value="EXPENSE" selected>EXPENSE (Расход)</option>
+                                                    <option value="INCOME" data-i18n="sim_ledger_form_income">INCOME (Revenue)</option>
+                                                    <option value="EXPENSE" selected data-i18n="sim_ledger_form_expense">EXPENSE (Spend)</option>
                                                 </select>
-                                                <input type="number" id="ledger-amount-input" placeholder="Сумма (₼)" value="150" class="ledger-input">
-                                                <input type="text" id="ledger-desc-input" placeholder="Обоснование" value="Аренда бокса" class="ledger-input">
-                                                <button class="btn btn-primary btn-sm" id="btn-add-ledger">Внести в Ledger</button>
+                                                <input type="number" id="ledger-amount-input" placeholder="Amount (₼)" data-i18n-placeholder="sim_ledger_placeholder_amount" value="150" class="ledger-input">
+                                                <input type="text" id="ledger-desc-input" placeholder="Reason" data-i18n-placeholder="sim_ledger_placeholder_desc" value="Box Rent" class="ledger-input">
+                                                <button class="btn btn-primary btn-sm" id="btn-add-ledger" data-i18n="sim_ledger_btn_add">Add to Ledger</button>
                                             </div>
                                         </div>
                                     </div>
@@ -482,12 +507,12 @@
             <div class="container">
                 <div class="roi-grid">
                     <div class="roi-info">
-                        <h2 class="section-title">Рассчитайте окупаемость <span class="text-gradient">CarsKeep</span></h2>
-                        <p class="roi-desc">Узнайте, сколько часов рабочего времени вы сэкономите и какую дополнительную прибыль получит ваш бизнес после внедрения нашей SaaS-системы.</p>
+                        <h2 class="section-title" data-i18n="roi_title" data-i18n-html="true">Calculate the ROI of <span class="text-gradient">CarsKeep</span></h2>
+                        <p class="roi-desc" data-i18n="roi_subtitle">Find out how many hours of working time you will save and what additional profit your business will get after implementing our SaaS.</p>
                         
                         <div class="roi-slider-group">
                             <div class="slider-header">
-                                <label for="bays-slider">Количество постов (боксов):</label>
+                                <label for="bays-slider" data-i18n="roi_label_bays">Number of posts (bays):</label>
                                 <span class="slider-value" id="bays-value">4</span>
                             </div>
                             <input type="range" id="bays-slider" min="1" max="15" value="4" class="range-slider">
@@ -495,7 +520,7 @@
 
                         <div class="roi-slider-group">
                             <div class="slider-header">
-                                <label for="avg-ticket-slider">Средний чек одного ремонта (₼):</label>
+                                <label for="avg-ticket-slider" data-i18n="roi_label_ticket">Average repair ticket (₼):</label>
                                 <span class="slider-value" id="avg-ticket-value">250 ₼</span>
                             </div>
                             <input type="range" id="avg-ticket-slider" min="50" max="1500" step="10" value="250" class="range-slider">
@@ -503,7 +528,7 @@
 
                         <div class="roi-slider-group">
                             <div class="slider-header">
-                                <label for="daily-cars-slider">Машин на пост в день:</label>
+                                <label for="daily-cars-slider" data-i18n="roi_label_cars">Cars per bay per day:</label>
                                 <span class="slider-value" id="daily-cars-value">2</span>
                             </div>
                             <input type="range" id="daily-cars-slider" min="1" max="8" value="2" class="range-slider">
@@ -511,24 +536,24 @@
                     </div>
 
                     <div class="roi-result-card">
-                        <div class="result-header">Ваша выгода в месяц:</div>
+                        <div class="result-header" data-i18n="roi_result_title">Your monthly benefit:</div>
                         <div class="result-profit" id="calc-profit">1 650 ₼</div>
                         <div class="result-metrics">
                             <div class="metric-row">
-                                <span>Сэкономлено времени:</span>
-                                <strong id="calc-hours">106 часов / мес</strong>
+                                <span data-i18n="roi_metric_time">Time saved:</span>
+                                <strong id="calc-hours">106 hours / mo</strong>
                             </div>
                             <div class="metric-row">
-                                <span>Рост продуктивности:</span>
+                                <span data-i18n="roi_metric_prod">Productivity increase:</span>
                                 <strong id="calc-productivity">+12%</strong>
                             </div>
                             <div class="metric-row">
-                                <span>Окупаемость CarsKeep:</span>
-                                <strong class="text-green">с 1-го дня</strong>
+                                <span data-i18n="roi_metric_payback">Payback time:</span>
+                                <strong class="text-green" id="calc-payback" data-i18n="roi_metric_payback_val">from day 1</strong>
                             </div>
                         </div>
-                        <div class="result-disclaimer">Расчет основан на средней статистике повышения эффективности автосервисов после перехода с Excel и WhatsApp-групп на автоматизацию с CarsKeep.</div>
-                        <a href="#pricing" class="btn btn-primary btn-block text-center" id="calc-cta">Подключить со скидкой</a>
+                        <div class="result-disclaimer" data-i18n="roi_disclaimer">The calculation is based on average efficiency improvements of auto repair shops switching from Excel and WhatsApp groups to CarsKeep.</div>
+                        <a href="#pricing" class="btn btn-primary btn-block text-center" id="calc-cta" data-i18n="roi_btn_cta">Connect with discount</a>
                     </div>
                 </div>
             </div>
@@ -538,32 +563,32 @@
         <section class="testimonials-section" id="testimonials">
             <div class="container">
                 <div class="section-header text-center">
-                    <h2 class="section-title">Истории успеха наших клиентов</h2>
-                    <p class="section-subtitle">Владельцы автосервисов делятся своими результатами перехода на CarsKeep.</p>
+                    <h2 class="section-title" data-i18n="test_title">Success stories of our clients</h2>
+                    <p class="section-subtitle" data-i18n="test_subtitle">Auto repair shop owners share their results after switching to CarsKeep.</p>
                 </div>
 
                 <div class="testimonials-grid">
                     <!-- Testimonial 1 -->
                     <div class="testimonial-card">
                         <div class="stars">⭐⭐⭐⭐⭐</div>
-                        <p class="testimonial-text">"Раньше согласование смет с клиентами занимало кучу времени — звонки, объяснения на пальцах. С CarsKeep отправляем смету с интерактивным кузовным осмотром прямо в WhatsApp. Клиент жмет одну кнопку, и мы приступаем. Выручка выросла на 25%!"</p>
+                        <p class="testimonial-text" data-i18n="test_1_text">"Before, coordinating estimates with clients took a lot of time — phone calls, explaining on fingers. With CarsKeep, we send estimates with interactive body inspection right to WhatsApp. The client clicks one button, and we start. Revenue grew by 25%!"</p>
                         <div class="testimonial-user">
-                            <div class="user-avatar">ЭА</div>
+                            <div class="user-avatar">EA</div>
                             <div class="user-info">
-                                <span class="user-name">Эльчин Алиев</span>
-                                <span class="user-biz">Владелец «Baku Detailing & Protection», г. Баку</span>
+                                <span class="user-name" data-i18n="test_1_name">Elchin Aliyev</span>
+                                <span class="user-biz" data-i18n="test_1_biz">Owner of «Baku Detailing & Protection», Baku</span>
                             </div>
                         </div>
                     </div>
                     <!-- Testimonial 2 -->
                     <div class="testimonial-card">
                         <div class="stars">⭐⭐⭐⭐⭐</div>
-                        <p class="testimonial-text">"Раньше касса постоянно расходилась, мастера мудрили с выработкой, а запчасти списывали задним числом. Внедрение append-only Ledger дисциплинировало всех. Записи не подделать, а отмена — только через Сторно. Доверие в бизнесе выросло на 100%."</p>
+                        <p class="testimonial-text" data-i18n="test_2_text">"Our cash drawer was always off, mechanics did tricks with hours, and parts were written off retroactively. Implementing append-only Ledger disciplined everyone. Entries can't be forged, and cancels are only via Storno. Trust in the business has grown 100%."</p>
                         <div class="testimonial-user">
-                            <div class="user-avatar">ИМ</div>
+                            <div class="user-avatar">IM</div>
                             <div class="user-info">
-                                <span class="user-name">Ильгар Мамедов</span>
-                                <span class="user-biz">Директор автотехцентра «Ganja Auto Service», г. Гянджа</span>
+                                <span class="user-name" data-i18n="test_2_name">Ilgar Mammadov</span>
+                                <span class="user-biz" data-i18n="test_2_biz">Director of «Ganja Auto Service», Ganja</span>
                             </div>
                         </div>
                     </div>
@@ -575,16 +600,16 @@
         <section class="pricing-section" id="pricing">
             <div class="container">
                 <div class="section-header text-center">
-                    <h2 class="section-title">Простые и прозрачные тарифы</h2>
-                    <p class="section-subtitle">Выберите план, подходящий вашему бизнесу. Тестируйте все функции бесплатно в течение 14 дней.</p>
+                    <h2 class="section-title" data-i18n="price_title">Simple and transparent pricing</h2>
+                    <p class="section-subtitle" data-i18n="price_subtitle">Choose the plan that fits your business. Test all features free for 14 days.</p>
                     
                     <div class="pricing-toggle-container">
-                        <span>Ежемесячно</span>
+                        <span data-i18n="price_toggle_monthly">Monthly</span>
                         <label class="switch">
                             <input type="checkbox" id="billing-toggle">
                             <span class="slider round"></span>
                         </label>
-                        <span>Ежегодно <span class="discount-badge">-20%</span></span>
+                        <span><span data-i18n="price_toggle_yearly">Annually</span> <span class="discount-badge" data-i18n="price_toggle_discount">Save 20%</span></span>
                     </div>
                 </div>
 
@@ -592,62 +617,62 @@
                     <!-- Plan 1: Starter -->
                     <div class="pricing-card" id="plan-starter">
                         <div class="plan-name">Starter</div>
-                        <div class="plan-desc">Для небольших гаражей и начинающих мастеров</div>
+                        <div class="plan-desc" data-i18n="plan_starter_desc">For small garages and individual mechanics</div>
                         <div class="plan-price">
                             <span class="currency">₼</span>
                             <span class="price-val" data-monthly="49" data-yearly="39">49</span>
-                            <span class="period">/ мес</span>
+                            <span class="period" data-i18n="price_period_mo">/ mo</span>
                         </div>
                         <ul class="plan-features">
-                            <li><span>✔</span> До 2-х постов (боксов)</li>
-                            <li><span>✔</span> Базовый календарь записей</li>
-                            <li><span>✔</span> Заказ-наряды и цифровые сметы</li>
-                            <li class="text-muted"><span>✖</span> Автоматический складской учет</li>
-                            <li class="text-muted"><span>✖</span> Официальный WhatsApp Meta API (WABA)</li>
-                            <li class="text-muted"><span>✖</span> Леджер и финансовая аналитика</li>
+                            <li data-i18n="plan_starter_f1"><span>✔</span> Up to 2 bays</li>
+                            <li data-i18n="plan_starter_f2"><span>✔</span> Basic booking calendar</li>
+                            <li data-i18n="plan_starter_f3"><span>✔</span> Jobcards and digital estimates</li>
+                            <li class="text-muted" data-i18n="plan_starter_f4_no"><span>✖</span> Automated inventory tracking</li>
+                            <li class="text-muted" data-i18n="plan_starter_f5_no"><span>✖</span> Official WhatsApp Meta API (WABA)</li>
+                            <li class="text-muted" data-i18n="plan_starter_f6_no"><span>✖</span> Ledger and financial analytics</li>
                         </ul>
-                        <a href="#register" class="btn btn-secondary btn-block text-center btn-pricing" data-plan="starter">Начать 14 дней демо</a>
+                        <a href="#register" class="btn btn-secondary btn-block text-center btn-pricing" data-plan="starter" data-i18n="plan_starter_btn">Start 14-day demo</a>
                     </div>
 
                     <!-- Plan 2: Professional -->
                     <div class="pricing-card featured" id="plan-pro">
-                        <div class="featured-tag">Популярно</div>
+                        <div class="featured-tag" data-i18n="plan_pro_tag">Popular</div>
                         <div class="plan-name">Professional</div>
-                        <div class="plan-desc">Идеально для полноценных автосервисов и детейлинг-центров</div>
+                        <div class="plan-desc" data-i18n="plan_pro_desc">Perfect for full-scale auto repair and detailing shops</div>
                         <div class="plan-price">
                             <span class="currency">₼</span>
                             <span class="price-val" data-monthly="99" data-yearly="79">99</span>
-                            <span class="period">/ мес</span>
+                            <span class="period" data-i18n="price_period_mo">/ mo</span>
                         </div>
                         <ul class="plan-features">
-                            <li><span>✔</span> До 8-ми постов (боксов)</li>
-                            <li><span>✔</span> Интерактивный Kanban и хронометраж</li>
-                            <li><span>✔</span> Схема дефектов и кузовной осмотр</li>
-                            <li><span>✔</span> Автосписание запчастей со склада (ТМЦ)</li>
-                            <li><span>✔</span> Официальный WhatsApp Meta API (WABA)</li>
-                            <li><span>✔</span> Журнал Ledger, сдельная зарплата мастеров</li>
+                            <li data-i18n="plan_pro_f1"><span>✔</span> Up to 8 bays</li>
+                            <li data-i18n="plan_pro_f2"><span>✔</span> Interactive Kanban & time tracking</li>
+                            <li data-i18n="plan_pro_f3"><span>✔</span> Defect blueprint & body inspection</li>
+                            <li data-i18n="plan_pro_f4"><span>✔</span> Auto inventory parts write-off</li>
+                            <li data-i18n="plan_pro_f5"><span>✔</span> Official WhatsApp Meta API (WABA)</li>
+                            <li data-i18n="plan_pro_f6"><span>✔</span> Ledger log & mechanic commission wages</li>
                         </ul>
-                        <a href="#register" class="btn btn-primary btn-block text-center btn-pricing" data-plan="professional">Начать 14 дней демо</a>
+                        <a href="#register" class="btn btn-primary btn-block text-center btn-pricing" data-plan="professional" data-i18n="plan_pro_btn">Start 14-day demo</a>
                     </div>
 
                     <!-- Plan 3: Enterprise -->
                     <div class="pricing-card" id="plan-enterprise">
                         <div class="plan-name">Enterprise</div>
-                        <div class="plan-desc">Для сетей автосервисов и крупных детейлинг-франшиз</div>
+                        <div class="plan-desc" data-i18n="plan_ent_desc">For workshop chains and large detailing franchises</div>
                         <div class="plan-price">
                             <span class="currency">₼</span>
                             <span class="price-val" data-monthly="199" data-yearly="159">199</span>
-                            <span class="period">/ мес</span>
+                            <span class="period" data-i18n="price_period_mo">/ mo</span>
                         </div>
                         <ul class="plan-features">
-                            <li><span>✔</span> Безлимитное количество постов</li>
-                            <li><span>✔</span> Несколько филиалов в едином Ledger-пространстве</li>
-                            <li><span>✔</span> Интеграция 1С и кастомных ERP по API</li>
-                            <li><span>✔</span> Персональный менеджер по импорту баз</li>
-                            <li><span>✔</span> Приоритетная поддержка 24/7</li>
-                            <li><span>✔</span> Персональное обучение персонала СТО</li>
+                            <li data-i18n="plan_ent_f1"><span>✔</span> Unlimited bays</li>
+                            <li data-i18n="plan_ent_f2"><span>✔</span> Multiple locations in a single Ledger space</li>
+                            <li data-i18n="plan_ent_f3"><span>✔</span> 1C and custom ERP integration via API</li>
+                            <li data-i18n="plan_ent_f4"><span>✔</span> Dedicated manager for database migration</li>
+                            <li data-i18n="plan_ent_f5"><span>✔</span> Priority 24/7 support</li>
+                            <li data-i18n="plan_ent_f6"><span>✔</span> On-site staff training</li>
                         </ul>
-                        <a href="#register" class="btn btn-secondary btn-block text-center btn-pricing" data-plan="enterprise">Связаться с нами</a>
+                        <a href="#register" class="btn btn-secondary btn-block text-center btn-pricing" data-plan="enterprise" data-i18n="plan_ent_btn">Contact us</a>
                     </div>
                 </div>
             </div>
@@ -657,49 +682,49 @@
         <section class="faq-section" id="faq">
             <div class="container">
                 <div class="section-header text-center">
-                    <h2 class="section-title">Часто задаваемые вопросы</h2>
-                    <p class="section-subtitle">Отвечаем на популярные вопросы о внедрении, безопасности и оплате.</p>
+                    <h2 class="section-title" data-i18n="faq_title">Frequently Asked Questions</h2>
+                    <p class="section-subtitle" data-i18n="faq_subtitle">We answer popular questions about implementation, security, and payment.</p>
                 </div>
 
                 <div class="faq-accordion-container">
                     <!-- FAQ Item 1 -->
                     <div class="faq-item">
                         <button class="faq-question" id="faq-q1" aria-expanded="false" aria-controls="faq-a1">
-                            <span>Как долго занимает внедрение системы в автосервис?</span>
+                            <span data-i18n="faq_q1">How long does implementation take?</span>
                             <span class="faq-icon">+</span>
                         </button>
                         <div class="faq-answer" id="faq-a1" role="region" aria-labelledby="faq-q1">
-                            <p>Внедрение занимает не более пары часов. Вы можете импортировать базу клиентов и список услуг из Excel за несколько кликов. Наша поддержка бесплатно поможет настроить профили ваших сотрудников и запустить систему.</p>
+                            <p data-i18n="faq_a1">Implementation takes no more than a couple of hours. You can import your client list and services from Excel in a few clicks. Our support team will help you configure employee profiles and get up and running for free.</p>
                         </div>
                     </div>
                     <!-- FAQ Item 2 -->
                     <div class="faq-item">
                         <button class="faq-question" id="faq-q2" aria-expanded="false" aria-controls="faq-a2">
-                            <span>Можно ли работать с мобильного телефона?</span>
+                            <span data-i18n="faq_q2">Can I work from a mobile phone?</span>
                             <span class="faq-icon">+</span>
                         </button>
                         <div class="faq-answer" id="faq-a2" role="region" aria-labelledby="faq-q2">
-                            <p>Да! CarsKeep полностью оптимизирован для работы на смартфонах и планшетах. Мастера могут отмечать царапины на 2D-схеме, фотографировать повреждения, прикреплять их к заказ-наряду и отправлять смету на согласование прямо у капота машины.</p>
+                            <p data-i18n="faq_a2">Yes! CarsKeep is fully optimized for smartphones and tablets. Mechanics can mark scratches on the 2D layout, take photos of damage, attach them to the jobcard, and send estimates for approval right by the car hood.</p>
                         </div>
                     </div>
                     <!-- FAQ Item 3 -->
                     <div class="faq-item">
                         <button class="faq-question" id="faq-q3" aria-expanded="false" aria-controls="faq-a3">
-                            <span>Что такое Ledger-регламент финансового учета в CarsKeep?</span>
+                            <span data-i18n="faq_q3">What is the Ledger regulation in CarsKeep?</span>
                             <span class="faq-icon">+</span>
                         </button>
                         <div class="faq-answer" id="faq-a3" role="region" aria-labelledby="faq-q3">
-                            <p>В CarsKeep все финансовые записи хранятся в append-only Леджере. Это значит, что записи нельзя отредактировать или удалить задним числом. Если допущена ошибка, создается корректирующая компенсирующая запись (STORNO). Это защищает собственника от мошенничества со стороны персонала и обеспечивает 100% точность финансового аудита.</p>
+                            <p data-i18n="faq_a3">In CarsKeep, all financial records are kept in an append-only Ledger. This means entries cannot be edited or deleted retroactively. If a mistake is made, a compensating entry (STORNO) is created. This protects owners from fraud and ensures a 100% accurate audit trail.</p>
                         </div>
                     </div>
                     <!-- FAQ Item 4 -->
                     <div class="faq-item">
                         <button class="faq-question" id="faq-q4" aria-expanded="false" aria-controls="faq-a4">
-                            <span>Нужно ли доплачивать за интеграцию с WhatsApp?</span>
+                            <span data-i18n="faq_q4">Do I need to pay extra for WhatsApp integration?</span>
                             <span class="faq-icon">+</span>
                         </button>
                         <div class="faq-answer" id="faq-a4" role="region" aria-labelledby="faq-q4">
-                            <p>Мы поддерживаем официальную интеграцию с Meta WhatsApp Business API (WABA). Настройка номера телефона занимает до 15 минут. CarsKeep не берет скрытых комиссий за сообщения — вы платите напрямую в Meta по официальным тарифам (в зависимости от страны получателя, при этом первые 1000 диалогов каждый месяц бесплатны).</p>
+                            <p data-i18n="faq_a4">We support official Meta WhatsApp Business API (WABA) integration. Connecting a phone number takes up to 15 minutes. CarsKeep charges no hidden fees per message — you pay Meta directly at official rates (depending on client country, with the first 1000 conversations each month being free).</p>
                         </div>
                     </div>
                 </div>
@@ -711,11 +736,11 @@
             <div class="container">
                 <div class="cta-banner">
                     <div class="cta-banner-content">
-                        <h2>Готовы перевести автосервис на цифру?</h2>
-                        <p>Начните бесплатный тестовый период 14 дней. Подключение занимает 5 минут. Кредитная карта не требуется.</p>
+                        <h2 data-i18n="cta_banner_title">Ready to digitize your auto business?</h2>
+                        <p data-i18n="cta_banner_desc">Start your 14-day free trial. Setup takes 5 minutes. No credit card required.</p>
                     </div>
                     <div class="cta-banner-action">
-                        <a href="#pricing" class="btn btn-primary btn-lg" id="footer-banner-cta">Начать бесплатно</a>
+                        <a href="#pricing" class="btn btn-primary btn-lg" id="footer-banner-cta" data-i18n="cta_banner_btn">Start for free</a>
                     </div>
                 </div>
             </div>
@@ -734,7 +759,7 @@
                     </span>
                     <span class="logo-text">Cars<span>Keep</span></span>
                 </a>
-                <p class="footer-desc">Современное облачное решение для автоматизации автосервисов любого масштаба.</p>
+                <p class="footer-desc" data-i18n="footer_desc">Modern cloud solution for workshop automation of any scale.</p>
                 <div class="social-links">
                     <a href="#" aria-label="VK"><span class="social-icon">VK</span></a>
                     <a href="#" aria-label="Telegram"><span class="social-icon">TG</span></a>
@@ -744,29 +769,29 @@
 
             <div class="footer-links-group">
                 <div class="footer-col">
-                    <h4>Продукт</h4>
+                    <h4 data-i18n="footer_col_product">Product</h4>
                     <ul>
-                        <li><a href="#features">Возможности</a></li>
-                        <li><a href="#roi-calculator">Калькулятор окупаемости</a></li>
-                        <li><a href="#pricing">Тарифные планы</a></li>
-                        <li><a href="#faq">FAQ</a></li>
+                        <li><a href="#features" data-i18n="nav_features">Features</a></li>
+                        <li><a href="#roi-calculator" data-i18n="nav_roi">ROI Calculator</a></li>
+                        <li><a href="#pricing" data-i18n="nav_pricing">Pricing</a></li>
+                        <li><a href="#faq" data-i18n="nav_faq">FAQ</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
-                    <h4>Ресурсы</h4>
+                    <h4 data-i18n="footer_col_resources">Resources</h4>
                     <ul>
-                        <li><a href="#">Блог о бизнесе СТО</a></li>
-                        <li><a href="#">База знаний</a></li>
-                        <li><a href="#">Видео-уроки по настройке</a></li>
-                        <li><a href="#">Отзывы клиентов</a></li>
+                        <li><a href="#" data-i18n="footer_resource_blog">Auto shop business blog</a></li>
+                        <li><a href="#" data-i18n="footer_resource_kb">Knowledge base</a></li>
+                        <li><a href="#" data-i18n="footer_resource_videos">Video tutorials</a></li>
+                        <li><a href="#" data-i18n="footer_resource_reviews">Client reviews</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
-                    <h4>Контакты</h4>
+                    <h4 data-i18n="footer_col_contacts">Contacts</h4>
                     <ul>
-                        <li><a href="mailto:support@carskeep.az">support@carskeep.az</a></li>
+                        <li><a href="mailto:support@carskeep.io">support@carskeep.io</a></li>
                         <li><a href="tel:+994124000000">+994 (12) 400-00-00</a></li>
-                        <li><span>г. Баку, ул. Низами, д. 142</span></li>
+                        <li><span data-i18n="footer_contact_address">142 Nizami Str., Baku</span></li>
                     </ul>
                 </div>
             </div>
@@ -774,16 +799,17 @@
 
         <div class="footer-bottom">
             <div class="container footer-bottom-container">
-                <p class="copyright">&copy; 2026 CarsKeep. Все права защищены.</p>
+                <p class="copyright" data-i18n="footer_copyright">&copy; 2026 CarsKeep. All rights reserved.</p>
                 <div class="bottom-links">
-                    <a href="#">Политика конфиденциальности</a>
-                    <a href="#">Условия использования</a>
+                    <a href="#" data-i18n="footer_privacy">Privacy Policy</a>
+                    <a href="#" data-i18n="footer_terms">Terms of Use</a>
                 </div>
             </div>
         </div>
     </footer>
 
     <!-- Script -->
+    <script src="translations.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
