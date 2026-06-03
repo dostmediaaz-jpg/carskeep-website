@@ -18,8 +18,8 @@
     --primary-hover: #2563eb;
     --primary-glow: rgba(59, 130, 246, 0.25);
     
-    --accent-green: #10b981;
-    --accent-green-bg: rgba(16, 185, 129, 0.1);
+    --accent-green: var(--primary);
+    --accent-green-bg: rgba(59, 130, 246, 0.1);
     --accent-red: #ef4444;
     
     --gradient-primary: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
@@ -78,8 +78,8 @@ html[data-theme="light"] {
     --primary-hover: #1d4ed8;
     --primary-glow: rgba(37, 99, 235, 0.15);
     
-    --accent-green: #10b981;
-    --accent-green-bg: rgba(16, 185, 129, 0.08);
+    --accent-green: var(--primary);
+    --accent-green-bg: rgba(37, 99, 235, 0.08);
     --accent-red: #ef4444;
     
     --gradient-primary: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
@@ -1201,8 +1201,8 @@ img {
 
 .portal-link-box {
     margin-top: auto;
-    background-color: rgba(16, 185, 129, 0.04);
-    border: 1px solid rgba(16, 185, 129, 0.12);
+    background-color: rgba(59, 130, 246, 0.04);
+    border: 1px solid rgba(59, 130, 246, 0.12);
     border-radius: 6px;
     padding: 6px;
     text-align: center;
