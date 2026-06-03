@@ -25,13 +25,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
     <!-- Stylesheet -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=1.1">
 
     <!-- Theme Switcher Init -->
     <script>
         (function() {
-            const savedTheme = localStorage.getItem('carskeep_theme') || 'dark';
-            document.documentElement.setAttribute('data-theme', savedTheme);
+            try {
+                const savedTheme = localStorage.getItem('carskeep_theme') || 'dark';
+                document.documentElement.setAttribute('data-theme', savedTheme);
+            } catch (e) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
         })();
     </script>
 </head>
@@ -835,6 +839,6 @@
     </footer>
 
     <!-- Script -->
-    <script src="script.js"></script>
+    <script src="script.js?v=1.1"></script>
 </body>
 </html>

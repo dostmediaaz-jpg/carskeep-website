@@ -62,7 +62,7 @@
 }
 
 /* Light Theme Variables Override */
-[data-theme="light"] {
+html[data-theme="light"] {
     --bg-darker: #f8fafc;
     --bg-dark: #ffffff;
     --bg-card: rgba(255, 255, 255, 0.75);
@@ -2435,12 +2435,12 @@ input:checked + .slider-round:before {
     transform: rotate(0) scale(1);
 }
 
-[data-theme="light"] .theme-toggle .sun-icon {
+html[data-theme="light"] .theme-toggle .sun-icon {
     opacity: 1;
     transform: rotate(0) scale(1);
 }
 
-[data-theme="light"] .theme-toggle .moon-icon {
+html[data-theme="light"] .theme-toggle .moon-icon {
     opacity: 0;
     transform: rotate(-90deg) scale(0);
 }

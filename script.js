@@ -750,11 +750,20 @@ document.addEventListener('DOMContentLoaded', () => {
             const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
             const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
             document.documentElement.setAttribute('data-theme', newTheme);
-            localStorage.setItem('carskeep_theme', newTheme);
+            try {
+                localStorage.setItem('carskeep_theme', newTheme);
+            } catch (e) {
+                console.warn('Could not save theme preference to localStorage:', e);
+            }
         });
     }
 
     // Initialize language from localStorage or default to EN (English)
-    const savedLang = localStorage.getItem('carskeep_lang') || 'en';
+    let savedLang = 'en';
+    try {
+        savedLang = localStorage.getItem('carskeep_lang') || 'en';
+    } catch (e) {
+        console.warn('Could not read language from localStorage:', e);
+    }
     switchLanguage(savedLang);
 });
